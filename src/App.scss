@@ -1,0 +1,715 @@
+
+body{
+  margin: 0;
+  padding: 0;
+  div {
+    margin: 0;
+    background: #FFFFFF;
+
+    .header {
+      position: absolute;
+      width: 1440px;
+      height: 655px;
+      left: 0px;
+      top: 72px;
+      background: url(fon.png);
+
+      color: #FFFFFF;
+      .textToHeader {
+        margin: 0;
+        position: absolute;
+        width: 586px;
+        height: 118px;
+        left: 130px;
+        top: 49px;
+
+        font-family: Montserrat;
+        font-style: normal;
+        font-size: 48px;
+        line-height: 59px;
+          span {
+            font-weight: bold;
+          }
+      }
+
+      .textToHeaderCitat{
+        margin: 0;
+        position: absolute;
+        width: 580px;
+        height: 56px;
+        left: 130px;
+        top: 198px;
+
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 142%;
+      }
+
+      .buttonToHeader{
+        margin: 0;
+        position: absolute;
+        width: 154px;
+        height: 56px;
+        left: 130px;
+        top: 279px;
+
+        background: #FFFFFF;
+        border-radius: 8px;
+        .textForButton{
+          font-family: Montserrat;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 16px;
+          line-height: 142%;
+
+          text-align: center;
+
+          color: #3A80BA;
+        }
+      }
+
+      .iphone{
+        position: absolute;
+        left: 64.71%;
+        right: 16.1%;
+        top: 2.49%;
+        bottom: 78.17%;
+
+        background: #3A80BA;
+      }
+    }
+    .textArea1{
+      margin: 0;
+      position: absolute;
+      width: 580px;
+      height: 78px;
+      left: 430px;
+      top: 671px;
+
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 32px;
+      line-height: 39px;
+      text-align: center;
+
+      color: #1A1A1A;
+    }
+
+    .textArea2{
+      margin: 0;
+      position: absolute;
+      width: 780px;
+      height: 56px;
+      left: 330px;
+      top: 773px;
+
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 142%;
+
+      text-align: center;
+
+      color: #7E7E7E;
+    }
+
+    .imgBox{
+      position: absolute;
+      width: 106px;
+      height: 96px; 
+      left: 137px;
+      top: 48px;
+    }
+
+    .cardName{
+      position: absolute;
+      width: 190px;
+      height: 29px;
+      left: 100px;
+      top: 190px;
+
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 29px;
+      text-align: center;
+
+      color: #1A1A1A;
+    }
+
+    .cardText{
+      position: absolute;
+      width: 316px;
+      height: 46px;
+      left: 35px;
+      top: 220px;
+
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 142%;
+
+      text-align: center;
+
+      color: #7E7E7E;
+    }
+
+    .box1{
+      box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
+      border-radius: 32px;
+
+      position: absolute;
+      width: 380px;
+      height: 323px;
+      left: 130px;
+      top: 869px;
+    }
+
+    .box2{
+      box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
+      border-radius: 32px;
+
+      position: absolute;
+      width: 380px;
+      height: 323px;
+      left: 530px;
+      top: 869px;
+    }
+
+    .box3{
+      box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
+      border-radius: 32px;
+
+      position: absolute;
+      width: 380px;
+      height: 323px;
+      left: 930px;
+      top: 869px;
+
+    }
+  }
+
+  .block2a{
+    top: 40px;
+    position: absolute;
+    height: 100px;
+    background: #FFFFFF;
+  }
+
+  .block2{
+    position: absolute;
+    width: 1440px;
+    height: 393px;
+    left: 0px;
+    top: 1273px;
+    background: linear-gradient(93.19deg, #255D8B 2.29%, #3A80BA 96.79%);
+    margin-top: 47px;
+    color: #FFFFFF;
+    .block2_text1{
+      margin: 0px;
+      position: absolute;
+      width: 580px;
+      height: 78px;
+      left: 130px;
+      top: 80px;
+
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 32px;
+      line-height: 39px;
+    }
+    .block2_text2{
+      position: absolute;
+      width: 580px;
+      height: 69px;
+      left: 130px;
+      top: 170px;
+      margin: 0px;
+
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 142%;
+      
+    }
+    .block2_button{
+      position: absolute;
+      width: 221px;
+      height: 56px;
+      left: 130px;
+      top: 260px;
+
+      background: #FFFFFF;
+      border-radius: 8px;
+      span{
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 142%;
+        /* identical to box height, or 23px */
+
+        text-align: center;
+
+        color: #255D8C;
+      }
+    }
+    .macBook{
+      position: absolute;
+      left: 48.94%;
+      right: 14.63%;
+      top: -34px;
+      bottom: 43.1%;
+
+    }
+  }
+
+  .block3{
+    margin: 0px;
+    padding: 0px;
+    font-family: Montserrat;
+    font-style: normal;
+    text-align: center;
+    .block3_text1{
+      position: absolute;
+      width: 580px;
+      height: 78px;
+      left: 430px;
+      top: 1782px;
+
+      font-size: 32px;
+      line-height: 39px;
+
+      color: #1A1A1A;
+    }
+    .block3_text2{
+      position: absolute;
+      width: 664px;
+      height: 56px;
+      left: 388px;
+      top: 1884px;
+
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 142%;
+      color: #7E7E7E;
+    }
+
+    .wawe2{
+      position: absolute;
+      width: 908px;
+      height: 513px;
+      left: 730px;
+      top: 1800px;
+    }
+    
+
+    .blockPanel{
+      p{
+        margin-top: 40px;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 29px;
+        text-align: center;
+      }
+
+      hr{
+        width: 250px;
+        height: 0px;
+        margin-bottom: 20px;
+      }
+
+      img{
+        display:block;
+        margin:auto;
+      }
+
+      .text{
+        margin: auto;
+        width: 222px;
+        height: 182px;
+        text-align: center;
+
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 162%;
+
+
+
+        color: #7E7E7E;
+      }
+
+      button{
+        width: 220px;
+        height: 56px;
+        background: #3A80BA;
+        border-radius: 8px;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 142%;
+        /* identical to box height, or 23px */
+
+        text-align: center;
+
+        color: #FFFFFF;
+      }
+
+      .price{
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 48px;
+        line-height: 59px;
+        /* identical to box height */
+
+        text-align: center;
+
+        color: #1A1A1A;
+      }
+
+      .block_1{
+        position: absolute;
+        width: 380px;
+        height: 627px;
+        left: 130px;
+        top: 1972px;
+  
+        border: 2px solid #F1F1F1;
+        box-sizing: border-box;
+        border-radius: 32px;
+      }
+  
+      .block_2{
+        position: absolute;
+        width: 380px;
+        height: 627px;
+        left: 530px;
+        top: 1972px;
+  
+        border: 2px solid #F1F1F1;
+        box-sizing: border-box;
+        border-radius: 32px;
+        .price{
+          color: #3A80BA;
+        }
+      }
+  
+      .block_3{
+        position: absolute;
+        width: 380px;
+        height: 627px;
+        left: 930px;
+        top: 1972px;
+  
+        border: 2px solid #F1F1F1;
+        box-sizing: border-box;
+        border-radius: 32px;
+      }
+    }
+
+    .formContact{
+      position: absolute;
+      width: 664px;
+      height: 28px;
+      left: 388px;
+      top: 2631px;
+
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 142%;
+      /* or 28px */
+
+      text-align: center;
+      color: #7E7E7E;
+      b{
+        color: #3A80BA;
+      }
+    }
+
+    form {
+      margin: 0 auto;
+      position: absolute;
+      width: 579px;
+      height: 64px;
+      left: 431px;
+      top: 2733px;
+    }
+    input, button {
+      border: none;
+      outline: none;
+      border-radius: 3px;
+    }
+    input {
+      width: 100%;
+      height: 68px;
+      padding-left: 15px;
+      background: #FFFFFF;
+      border: 1px solid #F1F1F1;
+      box-sizing: border-box;
+      border-radius: 10px;
+
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 162%;
+      /* identical to box height, or 26px */
+
+      display: flex;
+      align-items: center;
+
+      color: #B9B9B9;
+    }
+    .buttonForm {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 176px;
+      height: 56px;
+
+      background: #3A80BA;
+      border-radius: 8px;
+      cursor: pointer;
+
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 142%;
+      /* identical to box height, or 23px */
+
+      text-align: center;
+
+      color: #FFFFFF;
+    }
+
+  }
+
+  .wawe3{
+    position: absolute;
+    width: 1440px;
+    height: 183.46px;
+    left: 0px;
+    top: 2710.46px;
+
+  }
+
+  .footerText1{
+    position: absolute;
+    width: 109px;
+    height: 39px;
+    left: 130px;
+    top: 2821px;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 32px;
+    line-height: 39px;
+
+    color: #FFFFFF;
+  }
+
+  .footerText2{
+    position: absolute;
+    width: 264px;
+    height: 23px;
+    left: 588px;
+    top: 2829px;
+    
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 142%;
+    /* identical to box height, or 23px */
+    
+    text-align: center;
+    
+    color: #FFFFFF;
+  }
+
+  .footerText3{
+    position: absolute;
+    width: 147px;
+    height: 23px;
+    left: 1163px;
+    top: 2829px;
+    
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 142%;
+    /* identical to box height, or 23px */
+    
+    text-align: center;
+    
+    color: #FFFFFF;
+  }
+
+
+  .text_company {
+    width: 100%;
+    height: 72px;
+    left: 0px;
+    top: 0px;
+    margin: 0px;
+    
+    background: #3A80BA;
+    span{
+      margin: 0px;
+      position: absolute;
+      width: 136px;
+      height: 49px;
+      left: 130px;
+      top: 12px;
+
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 40px;
+      line-height: 49px;
+      /* identical to box height */
+
+
+      color: #FFFFFF;
+    }
+  }
+
+  .table_row_data{
+    text-align: center;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    /* identical to box height */
+
+
+    color: #1A1A1A;
+  }
+
+  .header_statistic_user_name{
+    margin-top: 25px;
+    margin-left: 130px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 39px;
+    /* identical to box height */
+
+
+    color: #1A1A1A;
+  }
+
+  .header_statistic_before{
+    margin-left: 40px;
+  }
+
+  .header_statistic_click{
+    margin-top: 25px;
+    margin-left: 130px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 29px;
+    /* identical to box height */
+
+
+    color: #1A1A1A;
+  }
+
+  .table{
+    width: 95%;
+    margin-left: 5%;
+    position: "relative";
+
+    table{
+      width: 85%;
+      height: 48px;
+      margin-left: 5%;
+      margin-top: 25px;
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 20px;
+
+      .table_header{
+        height: 50px;
+        background: #3A80BA;
+        color: #FFFFFF;
+        text-align: center; 
+        .cell1{
+          border-collapse:separate;
+          border-top-left-radius: 10px;
+        }
+        .cell2{
+          border-collapse:separate;
+          border-top-right-radius: 10px;
+        }
+      }
+    }
+  }
+
+  .pagination{
+    position: "relative";
+    margin-top: 25px;
+    margin-left: 11%;
+    margin-bottom: 25px;
+  }
+
+  .footer{
+    width: 100%;
+    height: 57px;
+    margin-top: 25px;
+
+    background: #1C3B55;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 142%;
+    display:table;
+
+    color: #FFFFFF;
+    .footer_company{
+      display:table-cell!important;
+      vertical-align:middle;
+      width: 70px;
+      padding-left: 130px;
+      font-size: 24px;
+      line-height: 29px;
+    }
+    span{
+      display:table-cell!important;
+      vertical-align:middle;
+      width: 180px;
+      padding-left: 280px;
+    }
+  }
+}
+
+
