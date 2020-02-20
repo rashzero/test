@@ -18,7 +18,7 @@ export default class Main extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className="first">
         <div className="header">
           <p className="textToHeader">
             <span>Brainstorming</span> for<br/> desired perfect Usability

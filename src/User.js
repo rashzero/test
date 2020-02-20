@@ -136,7 +136,7 @@ const useStylesForm = withStyles((theme) => ({
       marginTop: theme.spacing(2),
     },
     marginTop: '25px',
-    marginLeft: '130px',
+    marginLeft: '10%',
     fontSize: '16px',
   },
 }))(User);

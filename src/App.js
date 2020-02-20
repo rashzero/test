@@ -10,17 +10,13 @@ import './App.scss';
 function App() {
   return (
     <Router>
-      <Grid container direction="row">
-        <Header />
-        <Grid item xs={12}>
+      <Header />
         
-          <Switch>
-            <Route path="/" exact component={Main} />
-            <Route path="/statistic/:page" component={Statistic} />
-            <Route path="/user/:id" component={User} />
-          </Switch>
-        </Grid>
-      </Grid>
+      <Switch>
+        <Route path="/" exact component={Main} />
+        <Route path="/statistic/:page" component={Statistic} />
+        <Route path="/user/:id" component={User} />
+      </Switch>
     </Router>
     
   );

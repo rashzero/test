@@ -150,34 +150,36 @@ class Statistic extends React.Component {
             ))}
           </table>
         </div>
-        <div>
-          <ButtonGroup
-            color="primary"
-            aria-label="large outlined secondary button group"
-            className="pagination"
-          >
-            <Button  
-              disabled={(this.currentPage <= 0) ? true : false} 
-              onClick={this.backPage}
+        <div className="pagination">
+          <center>
+            <ButtonGroup
+              color="primary"
+              aria-label="large outlined secondary button group"
+              className="pagination_elem"
             >
-              Назад
-            </Button>
-            {new Array(this.numberOfPage).fill(null).map((value, index) => (
-              <Button
-                style={{ backgroundColor: (this.currentPage === index) ? '#3A80BA' : '' }}
-                value={index}
-                onClick={() => this.getUsersPage(index)}
+              <Button  
+                disabled={(this.currentPage <= 0) ? true : false} 
+                onClick={this.backPage}
               >
-                {index + 1}
+                Назад
               </Button>
-            ))}
-            <Button 
-              disabled={(this.currentPage === this.state.numberOfPage - 1) ? true : false} 
-              onClick={this.nextPage}
-            >
-              Вперед
-            </Button>
-          </ButtonGroup>
+              {new Array(this.numberOfPage).fill(null).map((value, index) => (
+                <Button
+                  style={{ backgroundColor: (this.currentPage === index) ? '#3A80BA' : '' }}
+                  value={index}
+                  onClick={() => this.getUsersPage(index)}
+                >
+                  {index + 1}
+                </Button>
+              ))}
+              <Button 
+                disabled={(this.currentPage === this.state.numberOfPage - 1) ? true : false} 
+                onClick={this.nextPage}
+              >
+                Вперед
+              </Button>
+            </ButtonGroup>
+          </center>
         </div>
         <div className="footer">
           <span className="footer_company">
@@ -201,7 +203,7 @@ const useStylesForm = withStyles((theme) => ({
       marginTop: theme.spacing(2),
     },
     marginTop: '25px',
-    marginLeft: '130px',
+    marginLeft: '10%',
     fontSize: '16px',
   },
 }))(Statistic);
