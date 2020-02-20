@@ -65,7 +65,7 @@ app.get('/api/users', (req, res) => {
 
 });
 
-app.get('/api/users/user', (req, res) => {
+app.get('/api/users/statistic', (req, res) => {
   const id = +req.query.id;
   function getMergedObj(userId) {
     const userStat = usersStat.reduce(function (newArr, user) {
@@ -81,7 +81,7 @@ app.get('/api/users/user', (req, res) => {
       user.date = dateNum;
     });
 
-    const fillDayGaps = ({ user }) => {
+    const fillDayGaps = ({ data }) => {
       const result = [];
       const getDaysDiff = (a, b) => {
           const aDays = a / (1000*60*60*24);
@@ -92,19 +92,16 @@ app.get('/api/users/user', (req, res) => {
       const startDate = 1569801600000;
       const finishDate = 1572566400000;
 
-      if (user[0].date > startDate) {
-        console.log(user[0].date);
-        console.log(startDate);
-        const diffStart = getDaysDiff(user[0].date, startDate);
+      if (data[0].date > startDate) {
+        const diffStart = getDaysDiff(data[0].date, startDate);
         for (let i = 1; i < diffStart; i++) {
           const dayMs = 1000*60*60*24;
           const missingDay = startDate + (dayMs * i);
-          result.push({user_id: user[0].user_id, date: missingDay, page_views: 0, clicks: 0});
+          result.push({user_id: data[0].user_id, date: missingDay, page_views: 0, clicks: 0});
         }
-        console.log(diffStart);
       }
    
-      user.forEach((user, index, arr) => {
+      data.forEach((user, index, arr) => {
         if (index === arr.length) {
           result.push(user);
           return;
@@ -125,22 +122,19 @@ app.get('/api/users/user', (req, res) => {
     
       });
 
-      if (user[user.length - 1].date < finishDate) {
-        console.log(user[user.length - 1].date);
-        console.log(startDate);
-        const diffStart = getDaysDiff(finishDate, user[user.length - 1].date);
+      if (data[data.length - 1].date < finishDate) {
+        const diffStart = getDaysDiff(finishDate, data[data.length - 1].date);
         for (let i = 1; i < diffStart; i++) {
           const dayMs = 1000*60*60*24;
-          const missingDay = user[user.length - 1].date + (dayMs * i);
-          result.push({user_id: user[user.length - 1].user_id, date: missingDay, page_views: 0, clicks: 0});
+          const missingDay = data[data.length - 1].date + (dayMs * i);
+          result.push({user_id: data[data.length - 1].user_id, date: missingDay, page_views: 0, clicks: 0});
         }
-        console.log(diffStart);
       }
 
     return result;
   }
    
-    const userStatistic = fillDayGaps({ user: userStat });
+    const userStatistic = fillDayGaps({ data: userStat });
 
     const user = users.find(item => item.id === userId);
     const userFull = Object.assign({}, user);
@@ -156,13 +150,15 @@ app.get('/api/users/user', (req, res) => {
 
 });
 
-app.head('/api/users/user', (req, res) => {
+app.head('/api/user', async (req, res) => {
   const id = +req.query.id;
-  const user = users.find(item => item.id === id);
+  console.log(id);
+  const user = await users.find(item => item.id === id);
   if (user) {
-    res.status(200);
+    res.status(200).end();
+  } else {
+    res.status(404).end();
   }
-  res.status(404);
 });
 
 app.listen(8080);

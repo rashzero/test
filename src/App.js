@@ -4,7 +4,7 @@ import Main from './Main';
 import User from './User';
 import Statistic from './Statistic';
 import Header from './Header';
-import Grid from '@material-ui/core/Grid';
+
 import './App.scss';
 
 function App() {

@@ -12,10 +12,10 @@ body{
       height: 655px;
       left: 0px;
       top: 72px;
-      background: url(fon.png);
+      background: url('./static/img/fon.png');
 
       color: #FFFFFF;
-      .textToHeader {
+      .header_text {
         margin: 0;
         position: absolute;
         width: 586px;
@@ -77,45 +77,47 @@ body{
         top: 2.49%;
         bottom: 78.17%;
 
-        background: #3A80BA;
       }
     }
-    .textArea1{
-      margin: 0;
-      position: absolute;
-      width: 580px;
-      height: 78px;
-      left: 430px;
-      top: 671px;
-
-      font-family: Montserrat;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 32px;
-      line-height: 39px;
-      text-align: center;
-
-      color: #1A1A1A;
+    .text{
+      width: 100%;
+      right: 0;
+      .text_area1{
+        margin: auto;
+        position: absolute;
+        width: 1440px;
+        height: 78px;
+        top: 671px;
+  
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 32px;
+        line-height: 39px;
+        text-align: center;
+  
+        color: #1A1A1A;
+      }
+  
+      .text_area2{
+        margin: auto;
+        position: absolute;
+        width: 1440px;
+        height: 56px;
+        top: 773px;
+  
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 142%;
+  
+        text-align: center;
+  
+        color: #7E7E7E;
+      }
     }
-
-    .textArea2{
-      margin: 0;
-      position: absolute;
-      width: 780px;
-      height: 56px;
-      left: 330px;
-      top: 773px;
-
-      font-family: Montserrat;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 20px;
-      line-height: 142%;
-
-      text-align: center;
-
-      color: #7E7E7E;
-    }
+    
 
     .imgBox{
       position: absolute;
@@ -159,40 +161,43 @@ body{
 
       color: #7E7E7E;
     }
-
-    .box1{
-      box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
-      border-radius: 32px;
-
-      position: absolute;
-      width: 380px;
-      height: 323px;
-      left: 130px;
-      top: 869px;
+    .box{
+      width: 100%;
+      .box_1{
+        box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
+        border-radius: 32px;
+  
+        position: absolute;
+        width: 383px;
+        height: 323px;
+        left: 130px;
+        top: 869px;
+      }
+  
+      .box_2{
+        box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
+        border-radius: 32px;
+  
+        position: absolute;
+        width: 383px;
+        height: 323px;
+        left: 530px;
+        top: 869px;
+      }
+  
+      .box_3{
+        box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
+        border-radius: 32px;
+  
+        position: absolute;
+        width: 383px;
+        height: 323px;
+        left: 930px;
+        top: 869px;
+  
+      }
     }
-
-    .box2{
-      box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
-      border-radius: 32px;
-
-      position: absolute;
-      width: 380px;
-      height: 323px;
-      left: 530px;
-      top: 869px;
-    }
-
-    .box3{
-      box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
-      border-radius: 32px;
-
-      position: absolute;
-      width: 380px;
-      height: 323px;
-      left: 930px;
-      top: 869px;
-
-    }
+    
   }
 
   .block2a{
@@ -305,9 +310,9 @@ body{
 
     .wawe2{
       position: absolute;
-      width: 908px;
+      width: 500px;
       height: 513px;
-      left: 730px;
+      left: 925px;
       top: 1800px;
     }
     

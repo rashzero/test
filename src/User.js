@@ -17,13 +17,26 @@ class User extends React.Component {
 
   componentDidMount() {
     const id = this.props.match.params.id;
-    this.getUsers(id);
-
+    this.searchUser(id);
   }
+
+
+
+  searchUser = async (id) => {
+    const url = `http://localhost:8080/api/user?id=${id}`;
+    const response = await fetch(url, {method: 'HEAD'});
+    const status = await response.status;
+    console.log(status);
+    if (status === 200) {
+      this.getUsers(id);
+    } else {
+      return null;
+    };
+  };
 
   getUsers = async (id) => {
     const {startFilter, finishFilter} = this.state;
-    const responseNumberOfPage = await fetch(`http://localhost:8080/api/users/user?id=${id}`);
+    const responseNumberOfPage = await fetch(`http://localhost:8080/api/users/statistic?id=${id}`);
     const responseJsonNumberOfPage = await responseNumberOfPage.json();
     const weekStatistic = responseJsonNumberOfPage.user.stat.slice(+startFilter.slice(8) - 1, +finishFilter.slice(8));
     this.setState({

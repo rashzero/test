@@ -1,14 +1,15 @@
 import React from 'react';
-import mobail from './mobile.png';
-import artImg from './Group 13.png';
-import artSec from './Group 15.png';
-import artPC from './Group 14.png';
-import macbook from './macbook.png';
-import wawe2 from './Rectangle 51.png';
-import basic from './undraw_online_test_gba7 1.png'
-import standart from './undraw_file_sync_ot38 1.png'
-import unlimited from './undraw_quiz_nlyh 1.png'
-import wawe3 from './Rectangle 54.png'
+import mobail from './static/img/mobile.png';
+import artImg from './static/img/Group 13.png';
+import artSec from './static/img/Group 15.png';
+import artPC from './static/img/Group 14.png';
+import macbook from './static/img/macbook.png';
+import wawe2 from './static/img/Rectangle 51.png';
+import basic from './static/img/undraw_online_test_gba7 1.png'
+import standart from './static/img/undraw_file_sync_ot38 1.png'
+import unlimited from './static/img/undraw_quiz_nlyh 1.png'
+import wawe3 from './static/img/Rectangle 54.png'
+
 
 export default class Main extends React.Component {
 
@@ -18,9 +19,9 @@ export default class Main extends React.Component {
 
   render () {
     return (
-      <div className="first">
+      <div>
         <div className="header">
-          <p className="textToHeader">
+          <p className="header_text">
             <span>Brainstorming</span> for<br/> desired perfect Usability
           </p>
           <p className="textToHeaderCitat">
@@ -29,21 +30,19 @@ export default class Main extends React.Component {
           <button className='buttonToHeader' onClick={this.hendlerClick}>
             <span className="textForButton">View Stats</span>
           </button>
-          <div className="iphone">
-            <img src={mobail} alt="mobail" />
-          </div>
+          <img src={mobail} alt="mobail" className="iphone"/>
         </div> 
-        <div>
-          <p className="textArea1">
+        <div className="text">
+          <p className="text_area1">
             Why <b>small business owners</b><br/>
             <b>love</b> AppCo?
           </p>
-          <p className="textArea2">
-            Our design projects are fresh and simple and will benefit your business greatly. Learn more about our work!
+          <p className="text_area2">
+            Our design projects are fresh and simple and will benefit your business<br/> greatly. Learn more about our work!
           </p>
         </div>  
-        <div>
-          <div className="box1">
+        <div className="box">
+          <div className="box_1">
             <img src={artImg} alt="art" className="imgBox"/>
             <div className="cardName">
               Clean Design
@@ -52,7 +51,7 @@ export default class Main extends React.Component {
               Increase sales by showing true dynamics of your website.
             </div>
           </div>
-          <div className="box2">
+          <div className="box_2">
             <img src={artSec} alt="art" className="imgBox"/>
             <div className="cardName">
               Secure Data
@@ -61,7 +60,7 @@ export default class Main extends React.Component {
               Build your online store’s trust using Social Proof & Urgency.
             </div>
           </div>
-          <div className="box3">
+          <div className="box_3">
             <img src={artPC} alt="art" className="imgBox"/>
             <div className="cardName">
               Retina Ready
@@ -71,19 +70,17 @@ export default class Main extends React.Component {
             </div>
           </div>
         </div> 
-        <div className="block2a">
-          <div className="block2">
-            <p className="block2_text1">
-              Start Managing your apps business, more faster
-            </p>
-            <p className="block2_text2">
-              Objectively deliver professional value with diverse web-readiness. Collaboratively transition wireless customer service without goal-oriented catalysts for change. Collaboratively.
-            </p>
-            <button className="block2_button">
-              <span>Learn more</span>
-            </button>
-            <img src={macbook} alt="macBook" className="macBook" />
-          </div> 
+        <div className="block2">
+          <p className="block2_text1">
+            Start Managing your apps business, more faster
+          </p>
+          <p className="block2_text2">
+            Objectively deliver professional value with diverse web-readiness. Collaboratively transition wireless customer service without goal-oriented catalysts for change. Collaboratively.
+          </p>
+          <button className="block2_button">
+            <span>Learn more</span>
+          </button>
+          <img src={macbook} alt="macBook" className="macBook" />
         </div>  
         <div className="block3">
           <div className="wawe2">
