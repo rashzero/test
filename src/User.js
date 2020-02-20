@@ -17,14 +17,7 @@ class User extends React.Component {
 
   componentDidMount() {
     const id = this.props.match.params.id;
-    //this.searchUser(id);
     this.getUsers(id);
-
-  }
-
-  searchUser = async (id) => {
-    const url = `http://localhost:8080/api/users/user?id=${id}`;
-    const response =  await fetch(url, 'HEAD');
 
   }
 
