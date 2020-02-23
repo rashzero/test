@@ -2,13 +2,15 @@
 body{
   margin: 0;
   padding: 0;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
   div {
     margin: 0;
     background: #FFFFFF;
 
     .header {
-      position: absolute;
-      width: 1440px;
+      width: 100%;
       height: 655px;
       left: 0px;
       top: 72px;
@@ -17,14 +19,12 @@ body{
       color: #FFFFFF;
       .header_text {
         margin: 0;
-        position: absolute;
         width: 586px;
         height: 118px;
         left: 130px;
         top: 49px;
 
-        font-family: Montserrat;
-        font-style: normal;
+
         font-size: 48px;
         line-height: 59px;
           span {
@@ -34,22 +34,17 @@ body{
 
       .textToHeaderCitat{
         margin: 0;
-        position: absolute;
         width: 580px;
         height: 56px;
         left: 130px;
         top: 198px;
 
-        font-family: Montserrat;
-        font-style: normal;
-        font-weight: normal;
         font-size: 20px;
         line-height: 142%;
       }
 
       .buttonToHeader{
         margin: 0;
-        position: absolute;
         width: 154px;
         height: 56px;
         left: 130px;
@@ -58,9 +53,8 @@ body{
         background: #FFFFFF;
         border-radius: 8px;
         .textForButton{
-          font-family: Montserrat;
-          font-style: normal;
-          font-weight: normal;
+
+          
           font-size: 16px;
           line-height: 142%;
 
@@ -84,14 +78,10 @@ body{
       right: 0;
       .text_area1{
         margin: auto;
-        position: absolute;
-        width: 1440px;
+        width: 100%;
         height: 78px;
         top: 671px;
   
-        font-family: Montserrat;
-        font-style: normal;
-        font-weight: normal;
         font-size: 32px;
         line-height: 39px;
         text-align: center;
@@ -101,14 +91,10 @@ body{
   
       .text_area2{
         margin: auto;
-        position: absolute;
-        width: 1440px;
+        width: 100%;
         height: 56px;
         top: 773px;
   
-        font-family: Montserrat;
-        font-style: normal;
-        font-weight: normal;
         font-size: 20px;
         line-height: 142%;
   
@@ -120,7 +106,6 @@ body{
     
 
     .imgBox{
-      position: absolute;
       width: 106px;
       height: 96px; 
       left: 137px;
@@ -128,14 +113,11 @@ body{
     }
 
     .cardName{
-      position: absolute;
       width: 190px;
       height: 29px;
       left: 100px;
       top: 190px;
 
-      font-family: Montserrat;
-      font-style: normal;
       font-weight: 600;
       font-size: 24px;
       line-height: 29px;
@@ -145,15 +127,11 @@ body{
     }
 
     .cardText{
-      position: absolute;
       width: 316px;
       height: 46px;
       left: 35px;
       top: 220px;
 
-      font-family: Montserrat;
-      font-style: normal;
-      font-weight: normal;
       font-size: 16px;
       line-height: 142%;
 
@@ -161,55 +139,32 @@ body{
 
       color: #7E7E7E;
     }
-    .box{
-      width: 100%;
-      .box_1{
-        box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
-        border-radius: 32px;
-  
-        position: absolute;
-        width: 383px;
-        height: 323px;
-        left: 130px;
-        top: 869px;
-      }
-  
-      .box_2{
-        box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
-        border-radius: 32px;
-  
-        position: absolute;
-        width: 383px;
-        height: 323px;
-        left: 530px;
-        top: 869px;
-      }
-  
-      .box_3{
-        box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
-        border-radius: 32px;
-  
-        position: absolute;
-        width: 383px;
-        height: 323px;
-        left: 930px;
-        top: 869px;
-  
-      }
-    }
+
+    .container {
+        display: grid;
+        grid-gap: 5px;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        grid-template-rows: repeat(2, 100px);
+        
+        .box{
+          box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
+          border-radius: 32px;
     
-  }
+          width: 383px;
+          height: 323px;
+        }
+      }
+    
+    }
 
   .block2a{
     top: 40px;
-    position: absolute;
     height: 100px;
     background: #FFFFFF;
   }
 
   .block2{
-    position: absolute;
-    width: 1440px;
+    width: 100%;
     height: 393px;
     left: 0px;
     top: 1273px;
@@ -218,35 +173,27 @@ body{
     color: #FFFFFF;
     .block2_text1{
       margin: 0px;
-      position: absolute;
       width: 580px;
       height: 78px;
       left: 130px;
       top: 80px;
 
-      font-family: Montserrat;
-      font-style: normal;
       font-weight: bold;
       font-size: 32px;
       line-height: 39px;
     }
     .block2_text2{
-      position: absolute;
       width: 580px;
       height: 69px;
       left: 130px;
       top: 170px;
       margin: 0px;
 
-      font-family: Montserrat;
-      font-style: normal;
-      font-weight: normal;
       font-size: 16px;
       line-height: 142%;
       
     }
     .block2_button{
-      position: absolute;
       width: 221px;
       height: 56px;
       left: 130px;
@@ -255,9 +202,6 @@ body{
       background: #FFFFFF;
       border-radius: 8px;
       span{
-        font-family: Montserrat;
-        font-style: normal;
-        font-weight: normal;
         font-size: 16px;
         line-height: 142%;
         /* identical to box height, or 23px */
@@ -268,7 +212,6 @@ body{
       }
     }
     .macBook{
-      position: absolute;
       left: 48.94%;
       right: 14.63%;
       top: -34px;
@@ -280,11 +223,8 @@ body{
   .block3{
     margin: 0px;
     padding: 0px;
-    font-family: Montserrat;
-    font-style: normal;
-    text-align: center;
+
     .block3_text1{
-      position: absolute;
       width: 580px;
       height: 78px;
       left: 430px;
@@ -296,7 +236,6 @@ body{
       color: #1A1A1A;
     }
     .block3_text2{
-      position: absolute;
       width: 664px;
       height: 56px;
       left: 388px;
@@ -309,10 +248,9 @@ body{
     }
 
     .wawe2{
-      position: absolute;
       width: 500px;
       height: 513px;
-      left: 925px;
+      right: 0px;
       top: 1800px;
     }
     
@@ -320,8 +258,6 @@ body{
     .blockPanel{
       p{
         margin-top: 40px;
-        font-family: Montserrat;
-        font-style: normal;
         font-weight: 600;
         font-size: 24px;
         line-height: 29px;
@@ -345,9 +281,6 @@ body{
         height: 182px;
         text-align: center;
 
-        font-family: Montserrat;
-        font-style: normal;
-        font-weight: normal;
         font-size: 16px;
         line-height: 162%;
 
@@ -361,9 +294,6 @@ body{
         height: 56px;
         background: #3A80BA;
         border-radius: 8px;
-        font-family: Montserrat;
-        font-style: normal;
-        font-weight: normal;
         font-size: 16px;
         line-height: 142%;
         /* identical to box height, or 23px */
@@ -376,8 +306,6 @@ body{
       .price{
         margin-top: 20px;
         margin-bottom: 20px;
-        font-family: Montserrat;
-        font-style: normal;
         font-weight: bold;
         font-size: 48px;
         line-height: 59px;
@@ -389,7 +317,6 @@ body{
       }
 
       .block_1{
-        position: absolute;
         width: 380px;
         height: 627px;
         left: 130px;
@@ -401,7 +328,6 @@ body{
       }
   
       .block_2{
-        position: absolute;
         width: 380px;
         height: 627px;
         left: 530px;
@@ -416,7 +342,6 @@ body{
       }
   
       .block_3{
-        position: absolute;
         width: 380px;
         height: 627px;
         left: 930px;
@@ -427,90 +352,80 @@ body{
         border-radius: 32px;
       }
     }
+  }
 
-    .formContact{
-      position: absolute;
-      width: 664px;
-      height: 28px;
-      left: 388px;
-      top: 2631px;
+  .formContact{
+    position: absolute;
+    width: 664px;
+    height: 28px;
+    left: 388px;
+    top: 2631px;
 
-      font-family: Montserrat;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 20px;
-      line-height: 142%;
-      /* or 28px */
+    font-size: 20px;
+    line-height: 142%;
+    /* or 28px */
 
-      text-align: center;
-      color: #7E7E7E;
-      b{
-        color: #3A80BA;
-      }
+    text-align: center;
+    color: #7E7E7E;
+    b{
+      color: #3A80BA;
     }
+  }
 
-    form {
-      margin: 0 auto;
-      position: absolute;
-      width: 579px;
-      height: 64px;
-      left: 431px;
-      top: 2733px;
-    }
-    input, button {
-      border: none;
-      outline: none;
-      border-radius: 3px;
-    }
-    input {
-      width: 100%;
-      height: 68px;
-      padding-left: 15px;
-      background: #FFFFFF;
-      border: 1px solid #F1F1F1;
-      box-sizing: border-box;
-      border-radius: 10px;
+  form {
+    margin: 0 auto;
+    position: absolute;
+    width: 579px;
+    height: 64px;
+    left: 431px;
+    top: 2733px;
+  }
+  input, button {
+    border: none;
+    outline: none;
+    border-radius: 3px;
+  }
+  input {
+    width: 100%;
+    height: 68px;
+    padding-left: 15px;
+    background: #FFFFFF;
+    border: 1px solid #F1F1F1;
+    box-sizing: border-box;
+    border-radius: 10px;
 
-      font-family: Montserrat;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 16px;
-      line-height: 162%;
-      /* identical to box height, or 26px */
+    font-size: 16px;
+    line-height: 162%;
+    /* identical to box height, or 26px */
 
-      display: flex;
-      align-items: center;
+    display: flex;
+    align-items: center;
 
-      color: #B9B9B9;
-    }
-    .buttonForm {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      width: 176px;
-      height: 56px;
+    color: #B9B9B9;
+  }
+  .buttonForm {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 176px;
+    height: 56px;
 
-      background: #3A80BA;
-      border-radius: 8px;
-      cursor: pointer;
+    background: #3A80BA;
+    border-radius: 8px;
+    cursor: pointer;
 
-      font-family: Montserrat;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 16px;
-      line-height: 142%;
-      /* identical to box height, or 23px */
+    font-size: 16px;
+    line-height: 142%;
+    /* identical to box height, or 23px */
 
-      text-align: center;
+    text-align: center;
 
-      color: #FFFFFF;
-    }
-
+    color: #FFFFFF;
   }
 
   .wawe3{
     position: absolute;
-    width: 1440px;
+    width: 100%;
     height: 183.46px;
     left: 0px;
     top: 2710.46px;
@@ -518,15 +433,11 @@ body{
   }
 
   .footerText1{
-    position: absolute;
     width: 109px;
     height: 39px;
     left: 130px;
     top: 2821px;
 
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
     font-size: 32px;
     line-height: 39px;
 
@@ -534,15 +445,11 @@ body{
   }
 
   .footerText2{
-    position: absolute;
     width: 264px;
     height: 23px;
     left: 588px;
     top: 2829px;
     
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
     font-size: 16px;
     line-height: 142%;
     /* identical to box height, or 23px */
@@ -553,15 +460,11 @@ body{
   }
 
   .footerText3{
-    position: absolute;
     width: 147px;
     height: 23px;
     left: 1163px;
     top: 2829px;
     
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
     font-size: 16px;
     line-height: 142%;
     /* identical to box height, or 23px */
@@ -574,9 +477,6 @@ body{
   .table_row_data{
     text-align: center;
 
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
     font-size: 16px;
     line-height: 20px;
     /* identical to box height */
@@ -588,8 +488,6 @@ body{
   .header_statistic_user_name{
     margin-top: 25px;
     margin-left: 10%;
-    font-family: Montserrat;
-    font-style: normal;
     font-weight: bold;
     font-size: 32px;
     line-height: 39px;
@@ -606,8 +504,6 @@ body{
   .header_statistic_click{
     margin-top: 25px;
     margin-left: 10%;
-    font-family: Montserrat;
-    font-style: normal;
     font-weight: bold;
     font-size: 24px;
     line-height: 29px;
@@ -618,7 +514,7 @@ body{
   }
 
   .table{
-    width: 95%;
+    width: 90%;
     margin: auto;
     overflow-x:auto;
 
@@ -626,14 +522,11 @@ body{
       height: 48px;
       margin-left: 5%;
       margin-top: 25px;
-      font-family: Montserrat;
-      font-style: normal;
-      font-weight: normal;
       font-size: 16px;
       line-height: 20px;
       border-collapse: collapse;
       border-spacing: 0;
-      width: 100%;
+      width: 90%;
 
       .table_header{
         height: 50px;
@@ -661,7 +554,7 @@ body{
 
       border-collapse: collapse;
       border-spacing: 0;
-      width: 100%;
+      width: 90%;
     }
   }
 
@@ -671,9 +564,6 @@ body{
     margin-top: 25px;
 
     background: #1C3B55;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
     font-size: 16px;
     line-height: 142%;
     display:table;
@@ -707,9 +597,6 @@ body{
       padding-left: 130px;
       top: 12px;
 
-      font-family: Montserrat;
-      font-style: normal;
-      font-weight: normal;
       font-size: 40px;
       line-height: 49px;
       /* identical to box height */

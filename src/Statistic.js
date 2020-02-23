@@ -9,7 +9,6 @@ import CircularIndeterminate from './CircularIndeterminate';
 
 
 class Statistic extends React.Component {
-  chunkSize = 50;
   numberOfPage;
 
   state = {
@@ -17,6 +16,7 @@ class Statistic extends React.Component {
     isLoading: false,
     cache: {},
     numberOfPage: '',
+    quantityUsersOnPage: 50,
   };
 
   componentDidMount() {
@@ -37,17 +37,9 @@ class Statistic extends React.Component {
     return 0;
   }
 
-  get startSlice() {
-    return this.currentPage * this.chunkSize;
-  }
-
-  get endSlice() {
-    return this.chunkSize + this.startSlice;
-  }
-
   getUsers = async (page) => {
     const cacheCloned = { ...this.state.cache };
-    const responseNumberOfPage = await fetch(`http://localhost:8080/api/users?page=${page}`);
+    const responseNumberOfPage = await fetch(`http://localhost:8080/api/users?page=${page}&quantity=${this.state.quantityUsersOnPage}`);
     const responseJsonNumberOfPage = await responseNumberOfPage.json();
     if (page in cacheCloned) {
       this.setState({
@@ -131,22 +123,20 @@ class Statistic extends React.Component {
               <td className="cell2">Total page views</td>
             </tr>
             {users.map((user) => (
-              //<Link href={`/user/${user.id}`} >
-                <tr 
-                  className="table_row_data" 
-                  style={{ backgroundColor: (user.id % 2) ? '#FBFBFB' : '#F1F1F1' }}
-                  onClick={() => this.handlerLinkToUser(user.id)}
-                >
-                  <td >{user.id}</td>
-                  <td>{user.first_name}</td>
-                  <td>{user.last_name}</td>
-                  <td>{user.email}</td>
-                  <td>{user.gender}</td>
-                  <td>{user.ip_address}</td>
-                  <td>{user.clicks}</td>
-                  <td >{user.page_views}</td>
-                </tr>
-              //</Link>
+              <tr 
+                className="table_row_data" 
+                style={{ backgroundColor: (user.id % 2) ? '#FBFBFB' : '#F1F1F1' }}
+                onClick={() => this.handlerLinkToUser(user.id)}
+              >
+                <td >{user.id}</td>
+                <td>{user.first_name}</td>
+                <td>{user.last_name}</td>
+                <td>{user.email}</td>
+                <td>{user.gender}</td>
+                <td>{user.ip_address}</td>
+                <td>{user.click}</td>
+                <td >{user.view}</td>
+              </tr>
             ))}
           </table>
         </div>

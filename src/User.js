@@ -36,7 +36,9 @@ class User extends React.Component {
 
   getUsers = async (id) => {
     const {startFilter, finishFilter} = this.state;
-    const url = `http://localhost:8080/api/users/statistic?id=${id}&start=${+startFilter.slice(8)-1}&end=${+finishFilter.slice(8)}`;
+    const start = +startFilter.slice(8)-1;
+    const end = +finishFilter.slice(8);
+    const url = `http://localhost:8080/api/users/statistic?id=${id}&start=${start}&end=${end}`;
     const responseNumberOfPage = await fetch(url);
     const responseJsonNumberOfPage = await responseNumberOfPage.json();
     this.setState({

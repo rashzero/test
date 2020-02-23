@@ -27,40 +27,36 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.get('/api/users', (req, res) => {
-  const sliceStart = req.query.page * 50;
-  const sliceEnd = sliceStart + 50;
+  const sliceStart = req.query.page * req.query.quantity;
+  const sliceEnd = sliceStart + +req.query.quantity;
   function getMergedObj(userId) {
-    let totalClicks = usersStat.reduce(function (sum, user) {
+    let totalStatistic = usersStat.reduce(function (sum, user) {
       if (user.user_id === userId) {
-        sum = sum + user.clicks;
+        sum.click = sum.click + user.clicks;
+        sum.view = sum.view + user.page_views;
       }
       return sum;
-    }, 0); 
-    let totalPageViews = usersStat.reduce(function (sum, user) {
-      if (user.user_id === userId) {
-        sum = sum + user.page_views;
-      }
-      return sum;
-    }, 0); 
+    }, {click: 0, view: 0}); 
 
     const user = users.find(item => item.id === userId);
-    const userFull = Object.assign({}, user);
-    userFull.clicks = totalClicks;
-    userFull.page_views = totalPageViews;
+    const userFull = Object.assign({}, user, totalStatistic);
     return userFull;
   }
   
-  const usersArrRes = users.map((item) => (
-    getMergedObj(item.id)
+  const chunkUsers = users.slice(sliceStart, sliceEnd);
+  const usersArrRes = chunkUsers.map((user) => (
+    getMergedObj(user.id)
   ));
+  console.log(chunkUsers);
+  console.log(sliceStart);
+  console.log(sliceEnd);
 
-  const numberOfButton = Math.ceil(usersArrRes.length / 50);
-    const chunkUsers = usersArrRes.slice(sliceStart, sliceEnd);
+  const numberOfButton = Math.ceil(users.length / req.query.quantity);
+
 
   res.json({
-    allUsers: usersArrRes,
     numbOfPage: numberOfButton,
-    chunkUsers: chunkUsers,
+    chunkUsers: usersArrRes,
   });
 
 });
@@ -131,26 +127,19 @@ app.get('/api/users/statistic', (req, res) => {
   console.log(req.query.id);
   const {id, start, end } = req.query;
 
-  const userStatistic = usersStat.reduce(function (newArr, user) {
-    if (user.user_id === +id) {
-      newArr.push(user)
-    }
-    return newArr;
-  }, []); 
+  const userStatistic = usersStat.filter(user => user.user_id === +id);
 
   userStatistic.map((user) => {
-    const date = +new Date(user.date).setHours(0);
+    const date = new Date(user.date).setHours(0);
     user.date = date;
   });
   
   const compare = (dateA, dateB) => {
     return dateA.date - dateB.date;
   }
-
-  const userStatisticFilter = userStatistic.sort(compare);
-  console.log(userStatisticFilter);
-  const fullUserStatistics = fillDayGaps({ data: userStatisticFilter });
-  console.log(fullUserStatistics);
+ 
+  const userStatisticSort = userStatistic.sort(compare);
+  const fullUserStatistics = fillDayGaps({ data: userStatisticSort });
   const userStatisticsFilter = { stat: fullUserStatistics.slice(+start, +end) };
   const user = users.find(user => user.id === +id);
   const userFull = Object.assign({}, user, userStatisticsFilter);
