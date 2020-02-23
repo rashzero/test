@@ -64,88 +64,99 @@ app.get('/api/users', (req, res) => {
   });
 
 });
+const getLastDayOfMonth = (year, month) => {
+  return +(new Date(year, month, 1).setUTCHours(0));
+}
+
+const fillDayGaps = ({ data }) => {
+  const result = [];
+  const getDaysDiff = (a, b) => {
+    const aDays = a / (1000 * 60 * 60 * 24);
+    const bDays = b / (1000 * 60 * 60 * 24);
+    return aDays - bDays;
+  }
+
+  const d = new Date(data[0].date);
+  const year = d.getUTCFullYear();
+  const month = d.getUTCMonth();
+
+  const startDate = getLastDayOfMonth(year, month);
+  const finishDate = getLastDayOfMonth(year, month + 1);
+
+  if (data[0].date > startDate) {
+    const diffStart = getDaysDiff(data[0].date, startDate);
+    for (let i = 1; i < diffStart; i++) {
+      const dayMs = 1000*60*60*24;
+      const missingDay = startDate + (dayMs * i);
+      result.push({user_id: data[0].user_id, date: missingDay, page_views: 0, clicks: 0});
+    }
+  }
+
+  data.forEach((userStat, index, arr) => {
+    // first or last userStat
+    if (index === 0 || index === arr.length) {
+      result.push(userStat);
+      return;
+    }
+
+    const current = new Date(userStat.date);
+    const next = new Date(arr[index + 1]);
+    const diff = getDaysDiff(next, current);
+
+    result.push(userStat);
+
+    if (diff > 1) {
+      for (let i = 1; i < diff; i++) {
+        const dayMs = 1000 * 60 * 60 * 24;
+        const missingDay = current.getTime() + (dayMs * i);
+        result.push(missingDay);
+      }
+    }
+
+  });
+
+  if (data[data.length - 1].date < finishDate) {
+    const diffStart = getDaysDiff(finishDate, data[data.length - 1].date);
+    for (let i = 1; i < diffStart; i++) {
+      const dayMs = 1000*60*60*24;
+      const missingDay = data[data.length - 1].date + (dayMs * i);
+      result.push({user_id: data[data.length - 1].user_id, date: missingDay, page_views: 0, clicks: 0});
+    }
+  }
+
+  return result;
+}
 
 app.get('/api/users/statistic', (req, res) => {
-  const id = +req.query.id;
-  function getMergedObj(userId) {
-    const userStat = usersStat.reduce(function (newArr, user) {
-      if (user.user_id === userId) {
-        newArr.push(user)
-      }
-      return newArr;
-    }, []);  
+  console.log(req.query.id);
+  const {id, start, end } = req.query;
 
-    userStat.map((user) => {
-      const date = new Date(user.date);
-      const dateNum = Date.parse(date);
-      user.date = dateNum;
-    });
+  const userStatistic = usersStat.reduce(function (newArr, user) {
+    if (user.user_id === +id) {
+      newArr.push(user)
+    }
+    return newArr;
+  }, []); 
 
-    const fillDayGaps = ({ data }) => {
-      const result = [];
-      const getDaysDiff = (a, b) => {
-          const aDays = a / (1000*60*60*24);
-          const bDays = b / (1000*60*60*24);
-          return aDays - bDays;
-      }
-
-      const startDate = 1569801600000;
-      const finishDate = 1572566400000;
-
-      if (data[0].date > startDate) {
-        const diffStart = getDaysDiff(data[0].date, startDate);
-        for (let i = 1; i < diffStart; i++) {
-          const dayMs = 1000*60*60*24;
-          const missingDay = startDate + (dayMs * i);
-          result.push({user_id: data[0].user_id, date: missingDay, page_views: 0, clicks: 0});
-        }
-      }
-   
-      data.forEach((user, index, arr) => {
-        if (index === arr.length) {
-          result.push(user);
-          return;
-        }
-        const current = new Date(user.date);
-        const next = new Date(arr[index+1]);
-        const diff = getDaysDiff(next, current);
-    
-        result.push(user);
-
-        if (diff > 1) {
-          for (let i = 1; i < diff; i++) {
-            const dayMs = 1000*60*60*24;
-            const missingDay = current.getTime() + (dayMs * i);
-            result.push(missingDay);
-          }
-        }
-    
-      });
-
-      if (data[data.length - 1].date < finishDate) {
-        const diffStart = getDaysDiff(finishDate, data[data.length - 1].date);
-        for (let i = 1; i < diffStart; i++) {
-          const dayMs = 1000*60*60*24;
-          const missingDay = data[data.length - 1].date + (dayMs * i);
-          result.push({user_id: data[data.length - 1].user_id, date: missingDay, page_views: 0, clicks: 0});
-        }
-      }
-
-    return result;
-  }
-   
-    const userStatistic = fillDayGaps({ data: userStat });
-
-    const user = users.find(item => item.id === userId);
-    const userFull = Object.assign({}, user);
-    userFull.stat = userStatistic;
-    return userFull;
+  userStatistic.map((user) => {
+    const date = +new Date(user.date).setHours(0);
+    user.date = date;
+  });
+  
+  const compare = (dateA, dateB) => {
+    return dateA.date - dateB.date;
   }
 
-  const userData = getMergedObj(id);
+  const userStatisticFilter = userStatistic.sort(compare);
+  console.log(userStatisticFilter);
+  const fullUserStatistics = fillDayGaps({ data: userStatisticFilter });
+  console.log(fullUserStatistics);
+  const userStatisticsFilter = { stat: fullUserStatistics.slice(+start, +end) };
+  const user = users.find(user => user.id === +id);
+  const userFull = Object.assign({}, user, userStatisticsFilter);
 
   res.json({
-    user: userData,
+    user: userFull,
   });
 
 });

@@ -36,12 +36,11 @@ class User extends React.Component {
 
   getUsers = async (id) => {
     const {startFilter, finishFilter} = this.state;
-    const responseNumberOfPage = await fetch(`http://localhost:8080/api/users/statistic?id=${id}`);
+    const url = `http://localhost:8080/api/users/statistic?id=${id}&start=${+startFilter.slice(8)-1}&end=${+finishFilter.slice(8)}`;
+    const responseNumberOfPage = await fetch(url);
     const responseJsonNumberOfPage = await responseNumberOfPage.json();
-    const weekStatistic = responseJsonNumberOfPage.user.stat.slice(+startFilter.slice(8) - 1, +finishFilter.slice(8));
     this.setState({
       user: responseJsonNumberOfPage.user,
-      weekStatistic,
     });
   }
 
@@ -110,7 +109,7 @@ class User extends React.Component {
           </Typography>
         </div>
         <div>
-          <ChartClicks statistics={this.state.weekStatistic}/>
+          <ChartClicks statistics={this.state.user.stat}/>
         </div>
         <div>
           <Typography  className="header_statistic_click"> 
@@ -118,7 +117,7 @@ class User extends React.Component {
           </Typography>
         </div>
         <div>
-          <ChartViews statistics={this.state.weekStatistic}/>
+          <ChartViews statistics={this.state.user.stat}/>
         </div>
         <div className="footer">
           <span className="footer_company">
