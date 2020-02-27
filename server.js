@@ -26,14 +26,16 @@ app.all('*', (req, res, next) => {
 app.use(express.json());
 app.use(cookieParser());
 
+const dayMs = (1000 * 60 * 60 * 24);
+
 app.get('/api/users', (req, res) => {
   const sliceStart = req.query.page * req.query.quantity;
   const sliceEnd = sliceStart + +req.query.quantity;
   function getMergedObj(userId) {
     let totalStatistic = usersStat.reduce(function (sum, user) {
       if (user.user_id === userId) {
-        sum.click = sum.click + user.clicks;
-        sum.view = sum.view + user.page_views;
+        sum.click += user.clicks;
+        sum.view += user.page_views;
       }
       return sum;
     }, {click: 0, view: 0}); 
@@ -47,9 +49,6 @@ app.get('/api/users', (req, res) => {
   const usersArrRes = chunkUsers.map((user) => (
     getMergedObj(user.id)
   ));
-  console.log(chunkUsers);
-  console.log(sliceStart);
-  console.log(sliceEnd);
 
   const numberOfButton = Math.ceil(users.length / req.query.quantity);
 
@@ -60,90 +59,59 @@ app.get('/api/users', (req, res) => {
   });
 
 });
-const getLastDayOfMonth = (year, month) => {
-  return +(new Date(year, month, 1).setUTCHours(0));
-}
 
-const fillDayGaps = ({ data }) => {
-  const result = [];
-  const getDaysDiff = (a, b) => {
+function getDaysDiff(a, b) {
     const aDays = a / (1000 * 60 * 60 * 24);
     const bDays = b / (1000 * 60 * 60 * 24);
     return aDays - bDays;
-  }
+}
 
-  const d = new Date(data[0].date);
-  const year = d.getUTCFullYear();
-  const month = d.getUTCMonth();
 
-  const startDate = getLastDayOfMonth(year, month);
-  const finishDate = getLastDayOfMonth(year, month + 1);
-
-  if (data[0].date > startDate) {
-    const diffStart = getDaysDiff(data[0].date, startDate);
-    for (let i = 1; i < diffStart; i++) {
-      const dayMs = 1000*60*60*24;
-      const missingDay = startDate + (dayMs * i);
-      result.push({user_id: data[0].user_id, date: missingDay, page_views: 0, clicks: 0});
-    }
-  }
-
-  data.forEach((userStat, index, arr) => {
-    // first or last userStat
-    if (index === 0 || index === arr.length) {
-      result.push(userStat);
-      return;
+function createDatesRange(startTimeStamp, finishTimeStamp) {
+    const result = [];
+    const periodDays = getDaysDiff(finishTimeStamp, startTimeStamp);
+    for (let i = 0; i <= periodDays; i++) {
+        result.push({
+          date: startTimeStamp + (i * dayMs), page_views: 0, clicks: 0
+        })
     }
 
-    const current = new Date(userStat.date);
-    const next = new Date(arr[index + 1]);
-    const diff = getDaysDiff(next, current);
-
-    result.push(userStat);
-
-    if (diff > 1) {
-      for (let i = 1; i < diff; i++) {
-        const dayMs = 1000 * 60 * 60 * 24;
-        const missingDay = current.getTime() + (dayMs * i);
-        result.push(missingDay);
-      }
-    }
-
-  });
-
-  if (data[data.length - 1].date < finishDate) {
-    const diffStart = getDaysDiff(finishDate, data[data.length - 1].date);
-    for (let i = 1; i < diffStart; i++) {
-      const dayMs = 1000*60*60*24;
-      const missingDay = data[data.length - 1].date + (dayMs * i);
-      result.push({user_id: data[data.length - 1].user_id, date: missingDay, page_views: 0, clicks: 0});
-    }
-  }
-
-  return result;
+    return result;
 }
 
 app.get('/api/users/statistic', (req, res) => {
-  console.log(req.query.id);
   const {id, start, end } = req.query;
-
   const userStatistic = usersStat.filter(user => user.user_id === +id);
 
-  userStatistic.map((user) => {
-    const date = new Date(user.date).setHours(0);
-    user.date = date;
+  const userStatisticDateInMs = userStatistic.map((user) => {
+    user.date = new Date(user.date).getTime();
+    return user;
   });
   
-  const compare = (dateA, dateB) => {
+  const compareDatesInMs = (dateA, dateB) => {
     return dateA.date - dateB.date;
   }
  
-  const userStatisticSort = userStatistic.sort(compare);
-  const fullUserStatistics = fillDayGaps({ data: userStatisticSort });
-  const userStatisticsFilter = { stat: fullUserStatistics.slice(+start, +end) };
-  const user = users.find(user => user.id === +id);
-  const userFull = Object.assign({}, user, userStatisticsFilter);
+  const userStatisticSorted = userStatisticDateInMs.sort(compareDatesInMs);
+  const arrDatesRange = createDatesRange(
+    new Date(start).getTime(),
+    new Date(end).getTime()
+  );
 
+  const userAllDayActions = arrDatesRange.map((date) => {
+    const dayActiveReal = userStatisticSorted.find(day => day.date === date.date);
+    
+    if (dayActiveReal) {
+      return dayActiveReal;
+    } else {
+      return date;
+    }
+  })
+
+  console.log(userAllDayActions);
+  
+  const user = users.find(user => user.id === +id);
+  const userFull = Object.assign({}, user, {stat: userAllDayActions});
   res.json({
     user: userFull,
   });

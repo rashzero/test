@@ -36,8 +36,8 @@ class User extends React.Component {
 
   getUsers = async (id) => {
     const {startFilter, finishFilter} = this.state;
-    const start = +startFilter.slice(8)-1;
-    const end = +finishFilter.slice(8);
+    const start = startFilter;
+    const end = finishFilter;
     const url = `http://localhost:8080/api/users/statistic?id=${id}&start=${start}&end=${end}`;
     const responseNumberOfPage = await fetch(url);
     const responseJsonNumberOfPage = await responseNumberOfPage.json();
@@ -91,6 +91,7 @@ class User extends React.Component {
               type="date" 
               min="2019-10-01" 
               max="2019-10-31" 
+              className="sort"
               defaultValue="2019-10-01" 
               onChange={this.handleChangeStart} 
             />
@@ -100,6 +101,7 @@ class User extends React.Component {
               type="date" 
               min="2019-10-01" 
               max="2019-10-31" 
+              className="sort"
               defaultValue="2019-10-07" 
               onChange={this.handleChangeFinish} 
             />
