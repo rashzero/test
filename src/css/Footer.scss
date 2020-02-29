@@ -1,0 +1,32 @@
+* {padding: 0; margin: 0; }
+body{
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+
+  div {
+    .footer{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-columns: minmax(100px, auto);
+      height: 50px;
+      text-align: center;
+      margin-top: 25px;
+    
+      background: #1C3B55;
+      font-size: 16px;
+      line-height: 142%;
+      color: #FFFFFF;
+      .footer_company{
+        padding-top: 15px;
+        font-size: 24px;
+        line-height: 29px;
+      }
+      .span{
+        margin-top: 15px;
+        font-size: 24px;
+        line-height: 29px;
+      }
+    }
+  }
+}

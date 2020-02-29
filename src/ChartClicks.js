@@ -9,7 +9,6 @@ export default class ChartClicks extends React.Component {
     if (!this.props.statistics) {
       return <CircularIndeterminate />;
     }
-    console.log(this.props);
     const userStatistic = this.props.statistics.map((userStat) => {
       const result = {x:  new Date(userStat.date),  y:  userStat.clicks}
 

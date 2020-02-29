@@ -28,37 +28,19 @@ app.use(cookieParser());
 
 const dayMs = (1000 * 60 * 60 * 24);
 
-app.get('/api/users', (req, res) => {
-  const sliceStart = req.query.page * req.query.quantity;
-  const sliceEnd = sliceStart + +req.query.quantity;
-  function getMergedObj(userId) {
-    let totalStatistic = usersStat.reduce(function (sum, user) {
-      if (user.user_id === userId) {
-        sum.click += user.clicks;
-        sum.view += user.page_views;
-      }
-      return sum;
-    }, {click: 0, view: 0}); 
+function getMergedObj(userId) {
+  const totalStatistic = usersStat.reduce(function (sum, user) {
+    if (user.user_id === userId) {
+      sum.click += user.clicks;
+      sum.view += user.page_views;
+    }
+    return sum;
+  }, {click: 0, view: 0}); 
 
-    const user = users.find(item => item.id === userId);
-    const userFull = Object.assign({}, user, totalStatistic);
-    return userFull;
-  }
-  
-  const chunkUsers = users.slice(sliceStart, sliceEnd);
-  const usersArrRes = chunkUsers.map((user) => (
-    getMergedObj(user.id)
-  ));
-
-  const numberOfButton = Math.ceil(users.length / req.query.quantity);
-
-
-  res.json({
-    numbOfPage: numberOfButton,
-    chunkUsers: usersArrRes,
-  });
-
-});
+  const user = users.find(item => item.id === userId);
+  const userFull = Object.assign({}, user, totalStatistic);
+  return userFull;
+}
 
 function getDaysDiff(a, b) {
     const aDays = a / (1000 * 60 * 60 * 24);
@@ -79,13 +61,37 @@ function createDatesRange(startTimeStamp, finishTimeStamp) {
     return result;
 }
 
+app.get('/api/users', (req, res) => {
+  const sliceStart = req.query.page * req.query.quantity;
+  const sliceEnd = sliceStart + +req.query.quantity;
+  const chunkUsers = users.slice(sliceStart, sliceEnd);
+  const usersArrRes = chunkUsers.map((user) => {
+    const fullActionsPeriod = getMergedObj(user.id);
+    return fullActionsPeriod;
+  });
+  const numberOfButton = Math.ceil(users.length / req.query.quantity);
+
+  res.json({
+    numbOfPage: numberOfButton,
+    chunkUsers: usersArrRes,
+  });
+
+});
+
 app.get('/api/users/statistic', (req, res) => {
   const {id, start, end } = req.query;
   const userStatistic = usersStat.filter(user => user.user_id === +id);
 
   const userStatisticDateInMs = userStatistic.map((user) => {
-    user.date = new Date(user.date).getTime();
-    return user;
+    const dateMilisecond = new Date(user.date).getTime();
+    return (
+      {
+        user_id: user.user_id, 
+        date: dateMilisecond, 
+        clicks: user.clicks, 
+        page_views: user.page_views,
+      }
+    )
   });
   
   const compareDatesInMs = (dateA, dateB) => {
@@ -108,8 +114,6 @@ app.get('/api/users/statistic', (req, res) => {
     }
   })
 
-  console.log(userAllDayActions);
-  
   const user = users.find(user => user.id === +id);
   const userFull = Object.assign({}, user, {stat: userAllDayActions});
   res.json({
@@ -120,7 +124,6 @@ app.get('/api/users/statistic', (req, res) => {
 
 app.head('/api/user', async (req, res) => {
   const id = +req.query.id;
-  console.log(id);
   const user = await users.find(item => item.id === id);
   if (user) {
     res.status(200).end();

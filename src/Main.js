@@ -18,53 +18,53 @@ export default class Main extends React.Component {
     return (
       <div>
         <div className="header">
-          <div className="header-text">
-            <div className="header-text-title">
+          <div className="header-content">
+            <div className="header-content_title">
               <span>Brainstorming</span> for<br/> desired perfect Usability
             </div>
-            <div className="header-text-citat">Our design projects are fresh and simple and will benefit your business greatly. Learn more about our work!</div>
+            <div className="header-content_citat">Our design projects are fresh and simple and will benefit your business greatly. Learn more about our work!</div>
             <div>
-              <button className='header-text-button' onClick={this.hendlerClick}>
+              <button className='header-content_button' onClick={this.hendlerClick}>
                 View Stats
               </button>
             </div>
           </div>
-          <div><img src={mobail} alt="mobail" className="iphone"/></div>
+          <div><img src={mobail} alt="mobail" className="header_iphone"/></div>
         </div>
-        <div className="text">
-          <p className="text_area1">
+        <div className="blok1">
+          <p className="blok1_area1">
             Why <b>small business owners</b><br/>
             <b>love</b> AppCo?
           </p>
-          <p className="text_area2">
+          <p className="blok1_area2">
             Our design projects are fresh and simple and will benefit your business<br/> greatly. Learn more about our work!
           </p>
         </div>
         <div className="box-container">
-          <div className="box">
-            <img src={artImg} alt="art" className="img-box"/>
-            <div className="card-name">
+          <div className="box-container-box">
+            <img src={artImg} alt="art" className="box-container-box_img"/>
+            <div className="box-container-box_card-name">
               Clean Design
             </div>
-            <div className="card-text">
+            <div className="box-container-box_text">
               Increase sales by showing true dynamics of your website.
             </div>
           </div>
-          <div className="box">
-            <img src={artSec} alt="art" className="img-box"/>
-            <div className="card-name">
+          <div className="box-container-box">
+            <img src={artSec} alt="art" className="box-container-box_img"/>
+            <div className="box-container-box_card-name">
               Secure Data
             </div>
-            <div className="card-text">
+            <div className="box-container-box_text">
               Build your online store’s trust using Social Proof & Urgency.
             </div>
           </div>
-          <div className="box">
-            <img src={artPC} alt="art" className="img-box"/>
-            <div className="card-name">
+          <div className="box-container-box">
+            <img src={artPC} alt="art" className="box-container-box_img"/>
+            <div className="box-container-box_card-name">
               Retina Ready
             </div>
-            <div className="card-text">
+            <div className="box-container-box_text">
               Realize importance of social proof in customer’s purchase decision.
             </div>
           </div>
@@ -83,32 +83,32 @@ export default class Main extends React.Component {
               </button>
             </div>
             <div>
-              <img src={macbook} alt="macBook" className="macBook" />
+              <img src={macbook} alt="macBook" className="block2_macBook" />
             </div>
           </div>  
         </div>
         <div className="block3">
-          <div className="block3_text">
-            <p className="block3_text1">
+          <div className="block3-content">
+            <p className="block3-content_text1">
               <b>Afforadble Pricing and Packages</b><br />
               choose your best one
             </p>
-            <p className="block3_text2">
+            <p className="block3-content_text2">
               Monotonectally grow strategic process improvements vis-a-vis integrated resources.
             </p>
           </div>
-          <div className="wawe2">
-            <div className="block-panel">
-              <div className="block">
+          <div className="block3-box-content">
+            <div className="block3-box-content-box-panel">
+              <div className="block3-box-content-box-panel_block">
                 <p>
                   Basic
                 </p>
                 <img src={basic} alt="Basic" />
-                <div className="price">
+                <div className="block3-box-content-box-panel_price">
                     $29
                 </div>
                 <hr />
-                <div className="text">
+                <div className="block3-box-content-box-panel_text">
                   Push Notifications
                   Data Transfer
                   SQL Database
@@ -117,70 +117,70 @@ export default class Main extends React.Component {
                   2 months technical support
                   2+ profitable keyword
                 </div>
-                  <button>
-                    Purchase now
-                  </button>
+                <button>
+                  Purchase now
+                </button>
+              </div>
+              <div className="block3-box-content-box-panel_block">
+                <p>
+                  Standard
+                </p>
+                <img src={standart} alt="Standart" />
+                <div className="block3-box-content-box-panel_price price-blue">
+                  $149
                 </div>
-                <div className="block">
-                  <p>
-                    Standard
-                  </p>
-                  <img src={standart} alt="Standart" />
-                  <div className="price price-blue">
-                    $149
-                  </div>
-                  <hr />
-                  <div className="text">
-                    Push Notifications
-                    Data Transfer
-                    SQL Database
-                    Search & SEO Analytics
-                    24/7 Phone Support
-                    2 months technical support
-                    2+ profitable keyword
-                  </div>
-                  <button>
-                    Purchase now
-                  </button>
+                <hr />
+                <div className="block3-box-content-box-panel_text">
+                  Push Notifications
+                  Data Transfer
+                  SQL Database
+                  Search & SEO Analytics
+                  24/7 Phone Support
+                  2 months technical support
+                  2+ profitable keyword
                 </div>
-                <div className="block">
-                  <p>
-                    Unlimited
-                  </p>
-                  <img src={unlimited} alt="Unlimited" />
-                  <div className="price">
-                    $39
-                  </div>
-                  <hr />
-                  <div className="text">
-                    Push Notifications
-                    Data Transfer
-                    SQL Database
-                    Search & SEO Analytics
-                    24/7 Phone Support
-                    2 months technical support
-                    2+ profitable keyword
-                  </div>
-                  <button>
-                    Purchase now
-                  </button>
-                </div> 
+                <button>
+                  Purchase now
+                </button>
+              </div>
+              <div className="block3-box-content-box-panel_block">
+                <p>
+                  Unlimited
+                </p>
+                <img src={unlimited} alt="Unlimited" />
+                <div className="block3-box-content-box-panel_price">
+                  $39
+                </div>
+                <hr />
+                <div className="block3-box-content-box-panel_text">
+                  Push Notifications
+                  Data Transfer
+                  SQL Database
+                  Search & SEO Analytics
+                  24/7 Phone Support
+                  2 months technical support
+                  2+ profitable keyword
+                </div>
+                <button>
+                  Purchase now
+                </button>
               </div> 
-            </div>
-          </div> 
-        <div className="wawe3">
-          <div>
-            <p className="formContact">
+            </div> 
+          </div>
+        </div> 
+        <div className="block4">
+          <div className="block4-content">
+            <p className="block4-content_formContact">
               If you need custom services or Need more? <b>Contact us</b>
             </p>
             <form>
-              <input value="Enter your email"/>
+              <input placeholder="Enter your email"/>
               <button>
                 Subscribe
               </button>
             </form>
           </div>
-          <div className="footer-main">
+          <div className="block4_footer">
             <p>
               AppCo
             </p>

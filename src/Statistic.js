@@ -6,10 +6,12 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { withStyles } from '@material-ui/core/styles';
 import CircularIndeterminate from './CircularIndeterminate';
+import './css/User_table.scss';
+import './css/Footer.scss';
 
 
 class Statistic extends React.Component {
-  numberOfPage;
+  quantityPage;
 
   state = {
     users: [],
@@ -39,7 +41,8 @@ class Statistic extends React.Component {
 
   getUsers = async (page) => {
     const cacheCloned = { ...this.state.cache };
-    const responseNumberOfPage = await fetch(`http://localhost:8080/api/users?page=${page}&quantity=${this.state.quantityUsersOnPage}`);
+    const url = `http://localhost:8080/api/users?page=${page}&quantity=${this.state.quantityUsersOnPage}`;
+    const responseNumberOfPage = await fetch(url);
     const responseJsonNumberOfPage = await responseNumberOfPage.json();
     if (page in cacheCloned) {
       this.setState({
@@ -65,9 +68,8 @@ class Statistic extends React.Component {
       isLoading: true,
     });
     const seriesArr = await this.getUsers(index);
-    console.log(seriesArr);
     this.props.history.push(`/statistic/${index}`);
-    this.numberOfPage = this.state.numberOfPage;
+    this.quantityPage = this.state.numberOfPage;
     this.setState({
       isLoading: false,
     });
@@ -84,9 +86,7 @@ class Statistic extends React.Component {
   handlerLinkToUser = (id) => {
     this.props.history.push(`/user/${id}`)
   }
-
-
-  
+ 
   render() {
     const { users } = this.state;
 
@@ -94,7 +94,6 @@ class Statistic extends React.Component {
       return <CircularIndeterminate />;
     }
 
-    console.log(this.state);
     return (
       <div>
         <div className={this.props.classes.root}>
@@ -106,25 +105,24 @@ class Statistic extends React.Component {
           </Breadcrumbs>
         </div>
         <div>
-          <Typography  className="header_statistic_user_name"> 
+          <Typography  className="content_user-name"> 
             Users statistics 
           </Typography>
         </div>
-        <div className="table">
+        <div className="content_table">
           <table>
-            <tr className="table_header">
-              <td className="cell1">id</td>
+            <tr className="content_table-header">
+              <td className="content_table-no-even">id</td>
               <td>First name</td>
               <td>Last name</td>
               <td>Email</td>
               <td>Gender</td>
               <td>IP adress</td>
               <td>Total clicks</td>
-              <td className="cell2">Total page views</td>
+              <td className="content_table-even">Total page views</td>
             </tr>
             {users.map((user) => (
               <tr 
-                className="table_row_data" 
                 style={{ backgroundColor: (user.id % 2) ? '#FBFBFB' : '#F1F1F1' }}
                 onClick={() => this.handlerLinkToUser(user.id)}
               >
@@ -140,12 +138,12 @@ class Statistic extends React.Component {
             ))}
           </table>
         </div>
-        <div className="pagination">
+        <div className="content_pagination">
           <center>
             <ButtonGroup
               color="primary"
               aria-label="large outlined secondary button group"
-              className="pagination_elem"
+              className="content_pagination-elem"
             >
               <Button  
                 disabled={(this.currentPage <= 0) ? true : false} 
@@ -153,7 +151,7 @@ class Statistic extends React.Component {
               >
                 Назад
               </Button>
-              {new Array(this.numberOfPage).fill(null).map((value, index) => (
+              {new Array(this.quantityPage).fill(null).map((value, index) => (
                 <Button
                   style={{ backgroundColor: (this.currentPage === index) ? '#3A80BA' : '' }}
                   value={index}

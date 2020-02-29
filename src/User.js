@@ -5,6 +5,8 @@ import Link from '@material-ui/core/Link';
 import { withStyles } from '@material-ui/core/styles';
 import ChartClicks from './ChartClicks';
 import ChartViews from './ChartViews';
+import './css/User_statistic.scss';
+import './css/Footer.scss';
 
 class User extends React.Component {
   
@@ -16,17 +18,24 @@ class User extends React.Component {
   };
 
   componentDidMount() {
-    const id = this.props.match.params.id;
-    this.searchUser(id);
+    this.searchUser(this.props.match.params.id);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.startFilter !== prevState.startFilter || this.state.finishFilter !== prevState.finishFilter) {
+      this.setState({
+        startFilter: this.state.startFilter,
+        finishFilter: this.state.finishFilter,
+      })
+      this.getUsers(this.state.user.id);
+    }
 
+  }
 
   searchUser = async (id) => {
     const url = `http://localhost:8080/api/user?id=${id}`;
     const response = await fetch(url, {method: 'HEAD'});
     const status = await response.status;
-    console.log(status);
     if (status === 200) {
       this.getUsers(id);
     } else {
@@ -46,24 +55,20 @@ class User extends React.Component {
     });
   }
 
-  handleChangeStart = async (event) => {
-    await this.setState({ 
+  handleChangeStart = (event) => {
+    this.setState({
       startFilter: event.target.value,
     });
-    this.getUsers(this.state.user.id);
   }
 
-  handleChangeFinish = async (event) => {
-    await this.setState({ 
+  handleChangeFinish = (event) => {
+    this.setState({ 
       finishFilter: event.target.value,
     });
-    this.getUsers(this.state.user.id);
   }
 
   render() {
     const {user} = this.state;
-    console.log(user);
-    console.log(this.state);
 
     return (
       <div>
@@ -79,7 +84,7 @@ class User extends React.Component {
           </Breadcrumbs>
         </div>
         <div>
-          <Typography  className="header_statistic_user_name"> 
+          <Typography  className="content_user-name"> 
             {`${user.first_name} ${user.last_name}`} 
           </Typography>
         </div>
@@ -95,7 +100,7 @@ class User extends React.Component {
               defaultValue="2019-10-01" 
               onChange={this.handleChangeStart} 
             />
-            <label name="date" className="header_statistic_before">До </label>
+            <label name="date" className="content_date">До </label>
             <input 
               id="dateFinish" 
               type="date" 
@@ -108,7 +113,7 @@ class User extends React.Component {
           </center>
         </div>
         <div>
-          <Typography  className="header_statistic_click"> 
+          <Typography  className="content_data-name"> 
             Clicks 
           </Typography>
         </div>
@@ -116,7 +121,7 @@ class User extends React.Component {
           <ChartClicks statistics={this.state.user.stat}/>
         </div>
         <div>
-          <Typography  className="header_statistic_click"> 
+          <Typography  className="content_data-name"> 
             Views 
           </Typography>
         </div>

@@ -5,7 +5,7 @@ import User from './User';
 import Statistic from './Statistic';
 import Header from './Header';
 
-import './App.scss';
+import './css/App.scss';
 
 function App() {
   return (
