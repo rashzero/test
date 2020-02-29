@@ -14,7 +14,7 @@ body{
       color: #1A1A1A;
     }
 
-    .content_table{
+    .content__table{
       width: 90%;
       margin: auto;
       overflow-x:auto;
@@ -29,16 +29,16 @@ body{
         border-spacing: 0;
         width: 90%;
   
-        .content_table-header{
+        .content__table_header{
           height: 50px;
           background: #3A80BA;
           color: #FFFFFF;
           text-align: center; 
-          .content_table-no-even{
+          .content__table_header_no-even{
             border-collapse:separate;
             border-top-left-radius: 10px;
           }
-          .content_table-even{
+          .content__table_header_even{
             border-collapse:separate;
             border-top-right-radius: 10px;
           }
@@ -46,9 +46,9 @@ body{
       }
     }
     
-    .content_pagination{
+    .content__pagination{
       overflow-x:auto;
-      .content_pagination-elem{
+      .content_pagination_elem{
         margin-top: 25px;
         margin-bottom: 25px;
         margin-left: 10%;

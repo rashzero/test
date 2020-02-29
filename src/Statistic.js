@@ -40,37 +40,33 @@ class Statistic extends React.Component {
 
   getUsers = async (page) => {
     const cacheCloned = { ...this.state.cache };
+
     const url = `http://localhost:8080/api/users?page=${page}&quantity=${this.quantityUsersOnPage}`;
     const responseNumberOfPage = await fetch(url);
     const responseJsonNumberOfPage = await responseNumberOfPage.json();
     if (page in cacheCloned) {
       this.setState({
-        users: [page],
+        users: cacheCloned[page],
       })
     } else {
       cacheCloned[page] = responseJsonNumberOfPage.chunkUsers;
-
       this.setState({
         users: responseJsonNumberOfPage.chunkUsers,
         cache: cacheCloned,
         paginationPagesQuantity: responseJsonNumberOfPage.numbOfPage,
       })
-
     }
-    this.setState({
-      users: responseJsonNumberOfPage.chunkUsers,
-    })
   }
 
-  getUsersPage = async (userId) => {
+  getUsersPage = (userId) => {
     this.setState({
       isLoading: true,
     });
     this.getUsers(userId);
-    this.props.history.push(`/statistic/${userId}`);
     this.setState({
       isLoading: false,
     });
+    this.props.history.push(`/statistic/${userId}`);
   }
 
   nextPage = () => {
@@ -107,17 +103,17 @@ class Statistic extends React.Component {
             Users statistics 
           </Typography>
         </div>
-        <div className="content_table">
+        <div className="content__table">
           <table>
-            <tr className="content_table-header">
-              <td className="content_table-no-even">id</td>
+            <tr className="content__table_header">
+              <td className="content__table_header_no-even">id</td>
               <td>First name</td>
               <td>Last name</td>
               <td>Email</td>
               <td>Gender</td>
               <td>IP adress</td>
               <td>Total clicks</td>
-              <td className="content_table-even">Total page views</td>
+              <td className="content__table_header_even">Total page views</td>
             </tr>
             {users.map((user) => (
               <tr 
@@ -137,12 +133,12 @@ class Statistic extends React.Component {
             ))}
           </table>
         </div>
-        <div className="content_pagination">
+        <div className="content__pagination">
           <center>
             <ButtonGroup
               color="primary"
               aria-label="large outlined secondary button group"
-              className="content_pagination-elem"
+              className="content__pagination_elem"
             >
               <Button  
                 disabled={(this.currentPage <= 0) ? true : false} 
@@ -150,15 +146,17 @@ class Statistic extends React.Component {
               >
                 Назад
               </Button>
-              {new Array(this.state.paginationPagesQuantity).fill(null).map((value, index) => (
-                <Button
-                  style={{ backgroundColor: (this.currentPage === index) ? '#3A80BA' : '' }}
-                  value={index}
-                  onClick={() => this.getUsersPage(index)}
-                  key={index}
-                >
-                  {index + 1}
-                </Button>
+              {new Array(this.state.paginationPagesQuantity)
+                .fill(null)
+                .map((value, index) => (
+                  <Button
+                    style={{ backgroundColor: (this.currentPage === index) ? '#3A80BA' : '' }}
+                    value={index}
+                    onClick={() => this.getUsersPage(index)}
+                    key={index}
+                  >
+                    {index + 1}
+                  </Button>
               ))}
               <Button 
                 disabled={(this.currentPage === this.state.paginationPagesQuantity - 1) ? true : false} 

@@ -13,13 +13,12 @@ class User extends React.Component {
   
   state = {
     user: {},
-    weekStatistic: '',
     startFilter: '2019-10-01',
     finishFilter: '2019-10-07',
   };
 
   componentDidMount() {
-    this.searchUser();
+    this.checkUserExistence();
   }
 
   componentDidUpdate(prevState) {
@@ -28,13 +27,13 @@ class User extends React.Component {
     }
   }
 
-  searchUser = async () => {
+  checkUserExistence = async () => {
     const url = `http://localhost:8080/api/users?id=${this.props.match.params.id}`;
     const response = await fetch(url, {method: 'HEAD'});
     if (response.status === 200) {
       this.getUsers();
     } else {
-      return {error: 'done user'};
+      return {error: 'User not found'};
     };
   };
 
