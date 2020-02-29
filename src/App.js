@@ -18,7 +18,6 @@ function App() {
         <Route path="/user/:id" component={User} />
       </Switch>
     </Router>
-    
   );
 }
 

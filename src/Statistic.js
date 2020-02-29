@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
@@ -9,16 +10,14 @@ import CircularIndeterminate from './CircularIndeterminate';
 import './css/User_table.scss';
 import './css/Footer.scss';
 
-
 class Statistic extends React.Component {
-  quantityPage;
+  quantityUsersOnPage = 50;
 
   state = {
     users: [],
     isLoading: false,
     cache: {},
-    numberOfPage: '',
-    quantityUsersOnPage: 50,
+    paginationPagesQuantity: '',
   };
 
   componentDidMount() {
@@ -41,7 +40,7 @@ class Statistic extends React.Component {
 
   getUsers = async (page) => {
     const cacheCloned = { ...this.state.cache };
-    const url = `http://localhost:8080/api/users?page=${page}&quantity=${this.state.quantityUsersOnPage}`;
+    const url = `http://localhost:8080/api/users?page=${page}&quantity=${this.quantityUsersOnPage}`;
     const responseNumberOfPage = await fetch(url);
     const responseJsonNumberOfPage = await responseNumberOfPage.json();
     if (page in cacheCloned) {
@@ -54,7 +53,7 @@ class Statistic extends React.Component {
       this.setState({
         users: responseJsonNumberOfPage.chunkUsers,
         cache: cacheCloned,
-        numberOfPage: responseJsonNumberOfPage.numbOfPage,
+        paginationPagesQuantity: responseJsonNumberOfPage.numbOfPage,
       })
 
     }
@@ -63,13 +62,12 @@ class Statistic extends React.Component {
     })
   }
 
-  getUsersPage = async (index) => {
+  getUsersPage = async (userId) => {
     this.setState({
       isLoading: true,
     });
-    const seriesArr = await this.getUsers(index);
-    this.props.history.push(`/statistic/${index}`);
-    this.quantityPage = this.state.numberOfPage;
+    this.getUsers(userId);
+    this.props.history.push(`/statistic/${userId}`);
     this.setState({
       isLoading: false,
     });
@@ -125,6 +123,7 @@ class Statistic extends React.Component {
               <tr 
                 style={{ backgroundColor: (user.id % 2) ? '#FBFBFB' : '#F1F1F1' }}
                 onClick={() => this.handlerLinkToUser(user.id)}
+                key={user.id}
               >
                 <td >{user.id}</td>
                 <td>{user.first_name}</td>
@@ -151,17 +150,18 @@ class Statistic extends React.Component {
               >
                 Назад
               </Button>
-              {new Array(this.quantityPage).fill(null).map((value, index) => (
+              {new Array(this.state.paginationPagesQuantity).fill(null).map((value, index) => (
                 <Button
                   style={{ backgroundColor: (this.currentPage === index) ? '#3A80BA' : '' }}
                   value={index}
                   onClick={() => this.getUsersPage(index)}
+                  key={index}
                 >
                   {index + 1}
                 </Button>
               ))}
               <Button 
-                disabled={(this.currentPage === this.state.numberOfPage - 1) ? true : false} 
+                disabled={(this.currentPage === this.state.paginationPagesQuantity - 1) ? true : false} 
                 onClick={this.nextPage}
               >
                 Вперед
@@ -195,5 +195,9 @@ const useStylesForm = withStyles((theme) => ({
     fontSize: '16px',
   },
 }))(Statistic);
+
+useStylesForm.propTypes = {
+  match: PropTypes.object,
+};
 
 export default (useStylesForm);

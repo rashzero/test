@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
@@ -146,5 +147,9 @@ const useStylesForm = withStyles((theme) => ({
     fontSize: '16px',
   },
 }))(User);
+
+useStylesForm.propTypes = {
+  match: PropTypes.object,
+};
 
 export default (useStylesForm);
