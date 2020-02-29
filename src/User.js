@@ -18,36 +18,28 @@ class User extends React.Component {
   };
 
   componentDidMount() {
-    this.searchUser(this.props.match.params.id);
+    this.searchUser();
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevState) {
     if (this.state.startFilter !== prevState.startFilter || this.state.finishFilter !== prevState.finishFilter) {
-      this.setState({
-        startFilter: this.state.startFilter,
-        finishFilter: this.state.finishFilter,
-      })
-      this.getUsers(this.state.user.id);
+      this.getUsers();
     }
-
   }
 
-  searchUser = async (id) => {
-    const url = `http://localhost:8080/api/user?id=${id}`;
+  searchUser = async () => {
+    const url = `http://localhost:8080/api/users?id=${this.props.match.params.id}`;
     const response = await fetch(url, {method: 'HEAD'});
-    const status = await response.status;
-    if (status === 200) {
-      this.getUsers(id);
+    if (response.status === 200) {
+      this.getUsers();
     } else {
-      return null;
+      return {error: 'done user'};
     };
   };
 
-  getUsers = async (id) => {
+  getUsers = async () => {
     const {startFilter, finishFilter} = this.state;
-    const start = startFilter;
-    const end = finishFilter;
-    const url = `http://localhost:8080/api/users/statistic?id=${id}&start=${start}&end=${end}`;
+    const url = `http://localhost:8080/api/users/statistic?id=${this.props.match.params.id}&start=${startFilter}&end=${finishFilter}`;
     const responseNumberOfPage = await fetch(url);
     const responseJsonNumberOfPage = await responseNumberOfPage.json();
     this.setState({

@@ -122,7 +122,7 @@ app.get('/api/users/statistic', (req, res) => {
 
 });
 
-app.head('/api/user', async (req, res) => {
+app.head('/api/users', async (req, res) => {
   const id = +req.query.id;
   const user = await users.find(item => item.id === id);
   if (user) {
