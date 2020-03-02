@@ -10,6 +10,8 @@ import './css/User_statistic.scss';
 import './css/Footer.scss';
 
 class User extends React.Component {
+  monthStart =  "2019-10-01";
+  monthEnd =  "2019-10-31";
   
   state = {
     user: {},
@@ -76,7 +78,7 @@ class User extends React.Component {
           </Breadcrumbs>
         </div>
         <div>
-          <Typography  className="content_user-name"> 
+          <Typography  className="content__user-name"> 
             {`${user.first_name} ${user.last_name}`} 
           </Typography>
         </div>
@@ -86,26 +88,26 @@ class User extends React.Component {
             <input 
               id="dateStart" 
               type="date" 
-              min="2019-10-01" 
-              max="2019-10-31" 
+              min={this.monthStart}
+              max={this.monthEnd} 
               className="sort"
-              defaultValue="2019-10-01" 
+              defaultValue={this.state.startFilter}
               onChange={this.handleChangeStart} 
             />
-            <label name="date" className="content_date">До </label>
+            <label name="date" className="content__date">До </label>
             <input 
               id="dateFinish" 
               type="date" 
-              min="2019-10-01" 
-              max="2019-10-31" 
+              min={this.monthStart} 
+              max={this.monthEnd} 
               className="sort"
-              defaultValue="2019-10-07" 
+              defaultValue={this.state.finishFilter} 
               onChange={this.handleChangeFinish} 
             />
           </center>
         </div>
         <div>
-          <Typography  className="content_data-name"> 
+          <Typography  className="content__title"> 
             Clicks 
           </Typography>
         </div>
@@ -113,7 +115,7 @@ class User extends React.Component {
           <ChartClicks statistics={this.state.user.stat}/>
         </div>
         <div>
-          <Typography  className="content_data-name"> 
+          <Typography  className="content__title"> 
             Views 
           </Typography>
         </div>

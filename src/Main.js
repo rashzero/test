@@ -11,25 +11,25 @@ import unlimited from './static/img/undraw_quiz_nlyh 1.png';
 export default class Main extends React.Component {
 
   hendlerClick = async () => {
-    this.props.history.push('/statistic/page');
+    this.props.history.push('/statistic/0');
   }
 
   render () {
     return (
       <div>
         <div className="header">
-          <div className="header-content">
-            <div className="header-content_title">
+          <div className="header__content">
+            <div className="header__content_title">
               <span>Brainstorming</span> for<br/> desired perfect Usability
             </div>
             <div className="header-content_citat">Our design projects are fresh and simple and will benefit your business greatly. Learn more about our work!</div>
             <div>
-              <button className='header-content_button' onClick={this.hendlerClick}>
+              <button className='header__content_button' onClick={this.hendlerClick}>
                 View Stats
               </button>
             </div>
           </div>
-          <div><img src={mobail} alt="mobail" className="header_iphone"/></div>
+          <div><img src={mobail} alt="mobail" className="header__iphone"/></div>
         </div>
         <div className="blok1">
           <p className="blok1_area1">
@@ -40,31 +40,31 @@ export default class Main extends React.Component {
             Our design projects are fresh and simple and will benefit your business<br/> greatly. Learn more about our work!
           </p>
         </div>
-        <div className="box-container">
-          <div className="box-container-box">
-            <img src={artImg} alt="art" className="box-container-box_img"/>
-            <div className="box-container-box_card-name">
+        <div className="box__container">
+          <div className="box__container_box">
+            <img src={artImg} alt="art" className="box__container_box_img"/>
+            <div className="box__container_box_card-name">
               Clean Design
             </div>
-            <div className="box-container-box_text">
+            <div className="box__container_box_text">
               Increase sales by showing true dynamics of your website.
             </div>
           </div>
-          <div className="box-container-box">
-            <img src={artSec} alt="art" className="box-container-box_img"/>
-            <div className="box-container-box_card-name">
+          <div className="box__container_box">
+            <img src={artSec} alt="art" className="box__container_box_img"/>
+            <div className="box__container_box_card-name">
               Secure Data
             </div>
-            <div className="box-container-box_text">
+            <div className="box__container_box_text">
               Build your online store’s trust using Social Proof & Urgency.
             </div>
           </div>
-          <div className="box-container-box">
-            <img src={artPC} alt="art" className="box-container-box_img"/>
-            <div className="box-container-box_card-name">
+          <div className="box__container_box">
+            <img src={artPC} alt="art" className="box__container_box_img"/>
+            <div className="box__container_box_card-name">
               Retina Ready
             </div>
-            <div className="box-container-box_text">
+            <div className="box__container_box_text">
               Realize importance of social proof in customer’s purchase decision.
             </div>
           </div>
@@ -88,27 +88,27 @@ export default class Main extends React.Component {
           </div>  
         </div>
         <div className="block3">
-          <div className="block3-content">
-            <p className="block3-content_text1">
+          <div className="block3__content">
+            <p className="block3__content_text1">
               <b>Afforadble Pricing and Packages</b><br />
               choose your best one
             </p>
-            <p className="block3-content_text2">
+            <p className="block3__content_text2">
               Monotonectally grow strategic process improvements vis-a-vis integrated resources.
             </p>
           </div>
-          <div className="block3-box-content">
-            <div className="block3-box-content-box-panel">
-              <div className="block3-box-content-box-panel_block">
+          <div className="block3__box_content">
+            <div className="block3__box_content_box_panel">
+              <div className="block3__box_content_box_panel_block">
                 <p>
                   Basic
                 </p>
                 <img src={basic} alt="Basic" />
-                <div className="block3-box-content-box-panel_price">
+                <div className="block3__box_content_box_panel_price">
                     $29
                 </div>
                 <hr />
-                <div className="block3-box-content-box-panel_text">
+                <div className="block3__box_content_box_panel_text">
                   Push Notifications
                   Data Transfer
                   SQL Database
@@ -121,16 +121,16 @@ export default class Main extends React.Component {
                   Purchase now
                 </button>
               </div>
-              <div className="block3-box-content-box-panel_block">
+              <div className="block3__box_content_box_panel_block">
                 <p>
                   Standard
                 </p>
                 <img src={standart} alt="Standart" />
-                <div className="block3-box-content-box-panel_price price-blue">
+                <div className="block3__box_content_box_panel_price price_blue">
                   $149
                 </div>
                 <hr />
-                <div className="block3-box-content-box-panel_text">
+                <div className="block3__box_content_box_panel_text">
                   Push Notifications
                   Data Transfer
                   SQL Database
@@ -143,16 +143,16 @@ export default class Main extends React.Component {
                   Purchase now
                 </button>
               </div>
-              <div className="block3-box-content-box-panel_block">
+              <div className="block3__box_content_box_panel_block">
                 <p>
                   Unlimited
                 </p>
                 <img src={unlimited} alt="Unlimited" />
-                <div className="block3-box-content-box-panel_price">
+                <div className="block3__box_content_box_panel_price">
                   $39
                 </div>
                 <hr />
-                <div className="block3-box-content-box-panel_text">
+                <div className="block3__box_content_box_panel_text">
                   Push Notifications
                   Data Transfer
                   SQL Database
@@ -169,8 +169,8 @@ export default class Main extends React.Component {
           </div>
         </div> 
         <div className="block4">
-          <div className="block4-content">
-            <p className="block4-content_formContact">
+          <div className="block4__content">
+            <p className="block4__content_formContact">
               If you need custom services or Need more? <b>Contact us</b>
             </p>
             <form>
@@ -180,7 +180,7 @@ export default class Main extends React.Component {
               </button>
             </form>
           </div>
-          <div className="block4_footer">
+          <div className="block4__footer">
             <p>
               AppCo
             </p>

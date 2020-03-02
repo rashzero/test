@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import CanvasJSReact from './assets/canvasjs.react.js';
 import CircularIndeterminate from './CircularIndeterminate';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -36,4 +37,8 @@ export default class ChartClicks extends React.Component {
 		);
 	}
 }
+
+ChartClicks.propTypes = {
+  statistics: PropTypes.array,
+};
                        

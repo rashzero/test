@@ -8,10 +8,11 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { withStyles } from '@material-ui/core/styles';
 import CircularIndeterminate from './CircularIndeterminate';
 import './css/User_table.scss';
+import './css/User_statistic.scss';
 import './css/Footer.scss';
 
 class Statistic extends React.Component {
-  quantityUsersOnPage = 50;
+  quantityUsersOnPage = 50; 
 
   state = {
     users: [],
@@ -21,60 +22,79 @@ class Statistic extends React.Component {
   };
 
   componentDidMount() {
-    this.getUsersPage(this.currentPage);
+    this.getUsers(this.currentPage);
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.match.params.page !== prevProps.match.params.page) {
-      this.getUsersPage(this.currentPage);
+      this.getUsers(this.currentPage);
     }
   }
 
   get currentPage() {
-    const { params } = this.props.match;
-    if (+params.page) {
-      return +params.page;
+    const { page } = this.props.match.params;
+    if (+page) {
+      return +page;
+    } else {
+      return 0;
     }
-    return 0;
   }
 
-  getUsers = async (page) => {
+  getUsersRequest = async (page) => {
+    try{
+      const url = `http://localhost:8080/api/users?page=${page}&quantity=${this.quantityUsersOnPage}`;
+      const responseNumberOfPage = await fetch(url);
+      const responseJsonNumberOfPage = await responseNumberOfPage.json();
+      const users = responseJsonNumberOfPage.chunkUsers;
+      
+      if (users.length > 0) {
+        return responseJsonNumberOfPage;
+      } else {
+        throw new RangeError("Данные некорректны");
+      }
+
+    } catch (e) {
+      return { error: `${e.name}: users not found`, users: [] };
+    }
+  }
+
+  getUsers = async (userId) => {
     const cacheCloned = { ...this.state.cache };
 
-    const url = `http://localhost:8080/api/users?page=${page}&quantity=${this.quantityUsersOnPage}`;
-    const responseNumberOfPage = await fetch(url);
-    const responseJsonNumberOfPage = await responseNumberOfPage.json();
-    if (page in cacheCloned) {
-      this.setState({
-        users: cacheCloned[page],
-      })
-    } else {
-      cacheCloned[page] = responseJsonNumberOfPage.chunkUsers;
-      this.setState({
-        users: responseJsonNumberOfPage.chunkUsers,
-        cache: cacheCloned,
-        paginationPagesQuantity: responseJsonNumberOfPage.numbOfPage,
-      })
-    }
-  }
-
-  getUsersPage = (userId) => {
     this.setState({
       isLoading: true,
     });
-    this.getUsers(userId);
-    this.setState({
-      isLoading: false,
-    });
-    this.props.history.push(`/statistic/${userId}`);
+
+    const usersRequest = await this.getUsersRequest(userId);
+
+    if (usersRequest.error) {
+      alert(usersRequest.error);
+    } else if (userId in cacheCloned) {
+      this.setState({
+        users: cacheCloned[userId],
+        isLoading: false,
+      })
+    } else {
+      cacheCloned[userId] = usersRequest.chunkUsers;
+      this.setState({
+        users: usersRequest.chunkUsers,
+        cache: cacheCloned,
+        paginationPagesQuantity: usersRequest.numbOfPage,
+        isLoading: false,
+      })
+    } 
+
+    if (userId !== this.currentPage) {
+      this.props.history.push(`/statistic/${userId}`);
+    }
   }
 
   nextPage = () => {
-    this.getUsersPage(this.currentPage + 1);
+    this.getUsers(this.currentPage + 1);
   }
 
   backPage = () => {
-    this.getUsersPage(this.currentPage - 1);
+    this.getUsers(this.currentPage - 1);
   }
 
   handlerLinkToUser = (id) => {
@@ -99,38 +119,43 @@ class Statistic extends React.Component {
           </Breadcrumbs>
         </div>
         <div>
-          <Typography  className="content_user-name"> 
+          <Typography  className="content__user-name"> 
             Users statistics 
           </Typography>
         </div>
         <div className="content__table">
           <table>
-            <tr className="content__table_header">
-              <td className="content__table_header_no-even">id</td>
-              <td>First name</td>
-              <td>Last name</td>
-              <td>Email</td>
-              <td>Gender</td>
-              <td>IP adress</td>
-              <td>Total clicks</td>
-              <td className="content__table_header_even">Total page views</td>
-            </tr>
-            {users.map((user) => (
-              <tr 
-                style={{ backgroundColor: (user.id % 2) ? '#FBFBFB' : '#F1F1F1' }}
-                onClick={() => this.handlerLinkToUser(user.id)}
-                key={user.id}
-              >
-                <td >{user.id}</td>
-                <td>{user.first_name}</td>
-                <td>{user.last_name}</td>
-                <td>{user.email}</td>
-                <td>{user.gender}</td>
-                <td>{user.ip_address}</td>
-                <td>{user.click}</td>
-                <td >{user.view}</td>
+            <thead>
+              <tr className="content__table_header">
+                <td className="content__table_header_no-even">id</td>
+                <td>First name</td>
+                <td>Last name</td>
+                <td>Email</td>
+                <td>Gender</td>
+                <td>IP adress</td>
+                <td>Total clicks</td>
+                <td className="content__table_header_even">Total page views</td>
               </tr>
-            ))}
+            </thead>
+            <tbody>
+              {users.map((user) => (
+                <tr 
+                  style={{ backgroundColor: (user.id % 2) ? '#FBFBFB' : '#F1F1F1' }}
+                  onClick={() => this.handlerLinkToUser(user.id)}
+                  key={user.id}
+                  className="content__table_rows"
+                >
+                  <td >{user.id}</td>
+                  <td>{user.first_name}</td>
+                  <td>{user.last_name}</td>
+                  <td>{user.email}</td>
+                  <td>{user.gender}</td>
+                  <td>{user.ip_address}</td>
+                  <td>{user.click}</td>
+                  <td >{user.view}</td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
         <div className="content__pagination">
@@ -152,7 +177,7 @@ class Statistic extends React.Component {
                   <Button
                     style={{ backgroundColor: (this.currentPage === index) ? '#3A80BA' : '' }}
                     value={index}
-                    onClick={() => this.getUsersPage(index)}
+                    onClick={() => this.getUsers(index)}
                     key={index}
                   >
                     {index + 1}

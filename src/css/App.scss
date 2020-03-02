@@ -13,14 +13,14 @@ body{
       background: url('../static/img/fon.png');
     }
     
-    .header-content{
+    .header__content{
       display: grid;
       grid-template-rows: repeat(4, 1fr);
       grid-auto-columns: minmax(80px, auto);
       padding-left: 14%;
       color: #FFFFFF;
 
-      .header-content_title{
+      .header__content_title{
         font-size: 24px;
         line-height: 29px;
 
@@ -28,11 +28,11 @@ body{
           font-weight: bold;
         }
       }
-      .header-content_citat{
+      .header__content_citat{
         font-size: 16px;
         line-height: 142%;
       }
-      .header-content_button{
+      .header__content_button{
         width: 154px;
         height: 56px;
         margin-top: 15px;
@@ -47,7 +47,7 @@ body{
       }
     }
 
-    .header_iphone{
+    .header__iphone{
       margin: auto;
       display: flex;
       flex-direction: column;
@@ -79,11 +79,11 @@ body{
       }
     }
 
-  .box-container{
+  .box__container{
     display: grid;
     grid-template-columns: 1fr;
     grid-auto-rows: minmax(100px, auto);
-    .box-container-box{
+    .box__container_box{
       box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
       border-radius: 32px;
     
@@ -93,11 +93,11 @@ body{
       margin-top: 20px;
       text-align: center;
       
-      .box-container-box_img{
+      .box__container_box_img{
         padding-top: 25px;
       }
   
-      .box-container-box_card-name{
+      .box__container_box_card-name{
         width: auto;
         height: auto;
         padding-top: 10px;
@@ -109,7 +109,7 @@ body{
         color: #1A1A1A;
       }
   
-      .box-container-box_text{
+      .box__container_box_text{
         padding: 10px;
         font-size: 16px;
         line-height: 142%;
@@ -173,17 +173,17 @@ body{
     background-position: right;
     background-repeat: no-repeat;
 
-    .block3-content{
+    .block3__content{
       display: grid;
       grid-template-columns: 1fr;
-      .block3-content_text1{   
+      .block3__content_text1{   
         text-align: center;
         font-size: 32px;
         line-height: 39px;
   
         color: #1A1A1A;
       }
-      .block3-content_text2{
+      .block3__content_text2{
         text-align: center;
         font-weight: normal;
         font-size: 20px;
@@ -192,11 +192,11 @@ body{
       }
     }
 
-    .block3-box-content-box-panel{
+    .block3__box_content_box_panel{
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
       grid-auto-rows: minmax(100px, auto);
-      .block3-box-content-box-panel_block{
+      .block3__box_content_box_panel_block{
         box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
         border-radius: 32px;
       
@@ -226,7 +226,7 @@ body{
           margin:auto;
         }
     
-        .block3-box-content-box-panel_text{
+        .block3__box_content_box_panel_text{
           margin: auto;
           width: 222px;
           height: 182px;
@@ -247,7 +247,7 @@ body{
           margin-bottom: 35px;
         }
     
-        .block3-box-content-box-panel_price{
+        .block3__box_content_box_panel_price{
           margin-top: 20px;
           margin-bottom: 20px;
           font-weight: bold;
@@ -255,7 +255,7 @@ body{
           line-height: 59px;
           color: #1A1A1A;
         }
-        .price-blue{
+        .price_blue{
           color: #3A80BA;
         }
       }
@@ -271,9 +271,9 @@ body{
     background-position: bottom;
     background-size: cover;
     text-align: center;
-    .block4-content{
+    .block4__content{
       text-align: center;
-      .block4-content_formContact{
+      .block4__content_formContact{
         width: 100%;
         font-size: 20px;
         line-height: 142%;
@@ -339,7 +339,7 @@ body{
     }
   }
 
-  .block4_footer{   
+  .block4__footer{   
     font-size: 24px;
     line-height: 142%;
     display: grid;
@@ -353,16 +353,16 @@ body{
     @media(min-width: 650px){
       .header{
         grid-template-columns: 2fr 1fr;
-        .header-content_title{
+        .header__content_title{
           font-size: 32px;
           line-height: 142%;
         }
-        .header-content_citat{
+        .header__content_citat{
           font-size: 20px;
           line-height: 142%;
           padding-top: 15px;
         }
-        .header-iphone{
+        .header__iphone{
           width: auto;
         }
       }
@@ -374,15 +374,15 @@ body{
     @media(min-width: 800px){
       .header{
         grid-template-columns: 2fr 1fr;
-        .header-content_title{
+        .header__content_title{
           font-size: 48px;
           line-height: 59px;
         }
-        .header-content_citat{
+        .header__content_citat{
           font-size: 28px;
           line-height: 142%;
         }
-        .header_iphone{
+        .header__iphone{
           width: auto;
         }
       }
@@ -397,7 +397,7 @@ body{
         }
       }
 
-      .box-container{
+      .box__container{
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-auto-columns: minmax(100px, auto);

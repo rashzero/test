@@ -5,14 +5,6 @@ body{
   font-weight: normal;
 
   div {
-    .content_user-name{
-      margin-top: 25px;
-      margin-left: 10%;
-      font-weight: bold;
-      font-size: 32px;
-      line-height: 39px;
-      color: #1A1A1A;
-    }
 
     .content__table{
       width: 90%;
@@ -28,12 +20,17 @@ body{
         border-collapse: collapse;
         border-spacing: 0;
         width: 90%;
+        text-align: center;
+        overflow-x:auto;
+
+        td{
+          padding: 5px 5px 5px 5px;
+        }
   
         .content__table_header{
           height: 50px;
           background: #3A80BA;
-          color: #FFFFFF;
-          text-align: center; 
+          color: #FFFFFF; 
           .content__table_header_no-even{
             border-collapse:separate;
             border-top-left-radius: 10px;
@@ -43,13 +40,20 @@ body{
             border-top-right-radius: 10px;
           }
         }
+        
+
+        .content__table_rows{
+          cursor: pointer;
+        }
+
+        .content__table_rows:hover {color: #0078BF}
       }
     }
     
     .content__pagination{
       overflow-x:auto;
+      margin-top: 25px;
       .content_pagination_elem{
-        margin-top: 25px;
         margin-bottom: 25px;
         margin-left: 10%;
     
