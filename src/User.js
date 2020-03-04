@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from "react-router-dom";
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
@@ -10,8 +11,6 @@ import './css/User_statistic.scss';
 import './css/Footer.scss';
 
 class User extends React.Component {
-  monthStart =  "2019-10-01";
-  monthEnd =  "2019-10-31";
   
   state = {
     user: {},
@@ -20,32 +19,56 @@ class User extends React.Component {
   };
 
   componentDidMount() {
-    this.checkUserExistence();
+    this.getUserWithStat();
   }
 
-  componentDidUpdate(prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (this.state.startFilter !== prevState.startFilter || this.state.finishFilter !== prevState.finishFilter) {
-      this.getUsers();
+      this.getUserWithStat();
     }
   }
 
-  checkUserExistence = async () => {
-    const url = `http://localhost:8080/api/users?id=${this.props.match.params.id}`;
+  checkUserExistenceRequest = async () => {
+    const url = `http://localhost:8080/api/users/status?id=${this.props.match.params.id}`;
     const response = await fetch(url, {method: 'HEAD'});
     if (response.status === 200) {
-      this.getUsers();
+      return { userExist: true }
     } else {
-      return {error: 'User not found'};
+      return { error: 'User not found' };
     };
   };
 
-  getUsers = async () => {
+  getUserWithStatRequest = async () => {
     const {startFilter, finishFilter} = this.state;
     const url = `http://localhost:8080/api/users/statistic?id=${this.props.match.params.id}&start=${startFilter}&end=${finishFilter}`;
     const responseNumberOfPage = await fetch(url);
     const responseJsonNumberOfPage = await responseNumberOfPage.json();
+    if (responseJsonNumberOfPage) {
+      return { user: responseJsonNumberOfPage.user };
+    } else {
+      return { error: 'user not get' }
+    }
+  }
+
+  getUserWithStat = async () => {
+    const UserWithStatRequest = await this.checkUserExistenceRequest();
+    if (UserWithStatRequest.error) {
+      console.log(5);
+      alert(UserWithStatRequest.error);
+      return
+    }
+
+    const userWithStatRequest = await this.getUserWithStatRequest();
+    if (userWithStatRequest.error) {
+      console.log(6);
+      alert(userWithStatRequest.error);
+      return
+    } 
+      
+    console.log(7);
+    console.log(userWithStatRequest);
     this.setState({
-      user: responseJsonNumberOfPage.user,
+      user: userWithStatRequest.user,
     });
   }
 
@@ -88,20 +111,16 @@ class User extends React.Component {
             <input 
               id="dateStart" 
               type="date" 
-              min={this.monthStart}
-              max={this.monthEnd} 
               className="sort"
-              defaultValue={this.state.startFilter}
+              value={this.state.startFilter}
               onChange={this.handleChangeStart} 
             />
             <label name="date" className="content__date">До </label>
             <input 
               id="dateFinish" 
               type="date" 
-              min={this.monthStart} 
-              max={this.monthEnd} 
               className="sort"
-              defaultValue={this.state.finishFilter} 
+              value={this.state.finishFilter} 
               onChange={this.handleChangeFinish} 
             />
           </center>
@@ -153,4 +172,4 @@ useStylesForm.propTypes = {
   match: PropTypes.object,
 };
 
-export default (useStylesForm);
+export default withRouter(useStylesForm);

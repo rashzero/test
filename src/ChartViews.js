@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CanvasJSReact from './assets/canvasjs.react.js';
-import CircularIndeterminate from './CircularIndeterminate';
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+import ProgressCentered from './ProgressCentered';
+const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default class ChartViews extends React.Component {	
 
   render() {
     if (!this.props.statistics) {
-      return <CircularIndeterminate />;
+      return <ProgressCentered />;
     }
     const userStatistic = this.props.statistics.map((userStat) => {
       const result = {x:  new Date(userStat.date),  y:  userStat.page_views}
@@ -19,20 +19,23 @@ export default class ChartViews extends React.Component {
       animationEnabled:  true,
       axisX: {
         //valueFormatString:  "MMM"
+        lineColor: "#F1F1F1",
       },
       axisY: {
-        includeZero:  true
+        includeZero:  true,
+        lineColor: "#F1F1F1",
+        gridColor: "#F1F1F1",
       },
       data: [{
         yValueFormatString: "#,###",
         xValueFormatString:  "MMMM",
-        type:  "spline",
+        type: "spline",
         dataPoints: userStatistic,
       }]
 		}
 		return (
 		<div>
-			< CanvasJSChart options = { options} />
+			<CanvasJSChart options = {options} />
 		</div>
 		);
 	}

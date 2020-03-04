@@ -79,11 +79,11 @@ body{
       }
     }
 
-  .box__container{
+  .container{
     display: grid;
     grid-template-columns: 1fr;
     grid-auto-rows: minmax(100px, auto);
-    .box__container_box{
+    .box__container{
       box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
       border-radius: 32px;
     
@@ -93,11 +93,11 @@ body{
       margin-top: 20px;
       text-align: center;
       
-      .box__container_box_img{
+      .box__container_img{
         padding-top: 25px;
       }
   
-      .box__container_box_card-name{
+      .box__container_card-name{
         width: auto;
         height: auto;
         padding-top: 10px;
@@ -109,7 +109,7 @@ body{
         color: #1A1A1A;
       }
   
-      .box__container_box_text{
+      .box__container_text{
         padding: 10px;
         font-size: 16px;
         line-height: 142%;
@@ -192,11 +192,11 @@ body{
       }
     }
 
-    .block3__box_content_box_panel{
+    .box__conteiner{
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
       grid-auto-rows: minmax(100px, auto);
-      .block3__box_content_box_panel_block{
+      .box__conteiner_block{
         box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
         border-radius: 32px;
       
@@ -226,7 +226,7 @@ body{
           margin:auto;
         }
     
-        .block3__box_content_box_panel_text{
+        .box__conteiner_text{
           margin: auto;
           width: 222px;
           height: 182px;
@@ -247,7 +247,7 @@ body{
           margin-bottom: 35px;
         }
     
-        .block3__box_content_box_panel_price{
+        .box__conteiner_price{
           margin-top: 20px;
           margin-bottom: 20px;
           font-weight: bold;
@@ -397,7 +397,7 @@ body{
         }
       }
 
-      .box__container{
+      .container{
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-auto-columns: minmax(100px, auto);

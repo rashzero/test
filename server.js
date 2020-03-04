@@ -71,11 +71,14 @@ app.get('/api/users', (req, res) => {
   });
   const numberOfButton = Math.ceil(users.length / req.query.quantity);
 
-  res.json({
-    numbOfPage: numberOfButton,
-    chunkUsers: usersArrRes,
-  });
-
+  if(usersArrRes.length > 0) {
+    res.json({
+      numbOfPage: numberOfButton,
+      chunkUsers: usersArrRes,
+    });
+  } else {
+    res.json({ error: 'users not found' });
+  }
 });
 
 app.get('/api/users/statistic', (req, res) => {
@@ -116,15 +119,19 @@ app.get('/api/users/statistic', (req, res) => {
 
   const user = users.find(user => user.id === +id);
   const userFull = Object.assign({}, user, {stat: userAllDayActions});
-  res.json({
-    user: userFull,
-  });
 
+  if(userFull) {
+    res.json({
+      user: userFull,
+    });
+  } else {
+    res.json({ error: 'user not found' });
+  }
 });
 
-app.head('/api/users', async (req, res) => {
+app.head('/api/users/status', async (req, res) => {
   const id = +req.query.id;
-  const user = await users.find(item => item.id === id);
+  const user = await users.find(user => user.id === id);
   if (user) {
     res.status(200).end();
   } else {

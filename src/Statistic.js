@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from "react-router-dom";
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { withStyles } from '@material-ui/core/styles';
-import CircularIndeterminate from './CircularIndeterminate';
+import ProgressCentered from './ProgressCentered';
 import './css/User_table.scss';
 import './css/User_statistic.scss';
 import './css/Footer.scss';
@@ -41,21 +42,11 @@ class Statistic extends React.Component {
   }
 
   getUsersRequest = async (page) => {
-    try{
       const url = `http://localhost:8080/api/users?page=${page}&quantity=${this.quantityUsersOnPage}`;
       const responseNumberOfPage = await fetch(url);
       const responseJsonNumberOfPage = await responseNumberOfPage.json();
-      const users = responseJsonNumberOfPage.chunkUsers;
-      
-      if (users.length > 0) {
-        return responseJsonNumberOfPage;
-      } else {
-        throw new RangeError("Данные некорректны");
-      }
-
-    } catch (e) {
-      return { error: `${e.name}: users not found`, users: [] };
-    }
+      console.log(responseJsonNumberOfPage);
+      return responseJsonNumberOfPage;
   }
 
   getUsers = async (userId) => {
@@ -67,19 +58,21 @@ class Statistic extends React.Component {
 
     const usersRequest = await this.getUsersRequest(userId);
 
-    if (usersRequest.error) {
-      alert(usersRequest.error);
+    const { chunkUsers, error, numbOfPage } = usersRequest;
+
+    if (error) {
+      alert(error);
     } else if (userId in cacheCloned) {
       this.setState({
         users: cacheCloned[userId],
         isLoading: false,
       })
     } else {
-      cacheCloned[userId] = usersRequest.chunkUsers;
+      cacheCloned[userId] = chunkUsers;
       this.setState({
-        users: usersRequest.chunkUsers,
+        users: chunkUsers,
         cache: cacheCloned,
-        paginationPagesQuantity: usersRequest.numbOfPage,
+        paginationPagesQuantity: numbOfPage,
         isLoading: false,
       })
     } 
@@ -105,7 +98,7 @@ class Statistic extends React.Component {
     const { users } = this.state;
 
     if (this.state.isLoading) {
-      return <CircularIndeterminate />;
+      return <ProgressCentered />;
     }
 
     return (
@@ -127,14 +120,14 @@ class Statistic extends React.Component {
           <table>
             <thead>
               <tr className="content__table_header">
-                <td className="content__table_header_no-even">id</td>
+                <td className="content__table_no-even">id</td>
                 <td>First name</td>
                 <td>Last name</td>
                 <td>Email</td>
                 <td>Gender</td>
                 <td>IP adress</td>
                 <td>Total clicks</td>
-                <td className="content__table_header_even">Total page views</td>
+                <td className="content__table_even">Total page views</td>
               </tr>
             </thead>
             <tbody>
@@ -166,7 +159,7 @@ class Statistic extends React.Component {
               className="content__pagination_elem"
             >
               <Button  
-                disabled={(this.currentPage <= 0) ? true : false} 
+                disabled={(this.currentPage <= 0)} 
                 onClick={this.backPage}
               >
                 Назад
@@ -184,7 +177,7 @@ class Statistic extends React.Component {
                   </Button>
               ))}
               <Button 
-                disabled={(this.currentPage === this.state.paginationPagesQuantity - 1) ? true : false} 
+                disabled={(this.currentPage === this.state.paginationPagesQuantity - 1)} 
                 onClick={this.nextPage}
               >
                 Вперед
@@ -221,6 +214,7 @@ const useStylesForm = withStyles((theme) => ({
 
 useStylesForm.propTypes = {
   match: PropTypes.object,
+  history: PropTypes.object.isRequired,
 };
 
-export default (useStylesForm);
+export default withRouter(useStylesForm);

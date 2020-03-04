@@ -4,7 +4,6 @@ import Main from './Main';
 import User from './User';
 import Statistic from './Statistic';
 import Header from './Header';
-
 import './css/App.scss';
 
 function App() {
@@ -13,9 +12,15 @@ function App() {
       <Header />
         
       <Switch>
-        <Route path="/" exact component={Main} />
-        <Route path="/statistic/:page" component={Statistic} />
-        <Route path="/user/:id" component={User} />
+        <Route exact path="/">
+          <Main />
+        </Route>
+        <Route path="/statistic/:page">
+          <Statistic />
+        </Route>
+        <Route path="/user/:id">
+          <User />
+        </Route> 
       </Switch>
     </Router>
   );

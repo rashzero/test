@@ -1,4 +1,6 @@
 import React from 'react';
+import { withRouter } from "react-router-dom";
+import PropTypes from 'prop-types';
 import mobail from './static/img/mobile.png';
 import artImg from './static/img/Group 13.png';
 import artSec from './static/img/Group 15.png';
@@ -8,9 +10,9 @@ import basic from './static/img/undraw_online_test_gba7 1.png';
 import standart from './static/img/undraw_file_sync_ot38 1.png';
 import unlimited from './static/img/undraw_quiz_nlyh 1.png';
 
-export default class Main extends React.Component {
+class Main extends React.Component {
 
-  hendlerClick = async () => {
+  hendlerClick = () => {
     this.props.history.push('/statistic/0');
   }
 
@@ -40,31 +42,31 @@ export default class Main extends React.Component {
             Our design projects are fresh and simple and will benefit your business<br/> greatly. Learn more about our work!
           </p>
         </div>
-        <div className="box__container">
-          <div className="box__container_box">
-            <img src={artImg} alt="art" className="box__container_box_img"/>
-            <div className="box__container_box_card-name">
+        <div className="container">
+          <div className="box__container">
+            <img src={artImg} alt="art" className="box__container_img"/>
+            <div className="box__container_card-name">
               Clean Design
             </div>
-            <div className="box__container_box_text">
+            <div className="box__container_text">
               Increase sales by showing true dynamics of your website.
             </div>
           </div>
-          <div className="box__container_box">
-            <img src={artSec} alt="art" className="box__container_box_img"/>
-            <div className="box__container_box_card-name">
+          <div className="box__container">
+            <img src={artSec} alt="art" className="box__container_img"/>
+            <div className="box__container_card-name">
               Secure Data
             </div>
-            <div className="box__container_box_text">
+            <div className="box__container_text">
               Build your online store’s trust using Social Proof & Urgency.
             </div>
           </div>
-          <div className="box__container_box">
-            <img src={artPC} alt="art" className="box__container_box_img"/>
-            <div className="box__container_box_card-name">
+          <div className="box__container">
+            <img src={artPC} alt="art" className="box__container_img"/>
+            <div className="box__container_card-name">
               Retina Ready
             </div>
-            <div className="box__container_box_text">
+            <div className="box__container_text">
               Realize importance of social proof in customer’s purchase decision.
             </div>
           </div>
@@ -97,18 +99,18 @@ export default class Main extends React.Component {
               Monotonectally grow strategic process improvements vis-a-vis integrated resources.
             </p>
           </div>
-          <div className="block3__box_content">
-            <div className="block3__box_content_box_panel">
-              <div className="block3__box_content_box_panel_block">
+          <div>
+            <div className="box__conteiner">
+              <div className="box__conteiner_block">
                 <p>
                   Basic
                 </p>
                 <img src={basic} alt="Basic" />
-                <div className="block3__box_content_box_panel_price">
+                <div className="box__conteiner_price">
                     $29
                 </div>
                 <hr />
-                <div className="block3__box_content_box_panel_text">
+                <div className="box__conteiner_text">
                   Push Notifications
                   Data Transfer
                   SQL Database
@@ -121,16 +123,16 @@ export default class Main extends React.Component {
                   Purchase now
                 </button>
               </div>
-              <div className="block3__box_content_box_panel_block">
+              <div className="box__conteiner_block">
                 <p>
                   Standard
                 </p>
                 <img src={standart} alt="Standart" />
-                <div className="block3__box_content_box_panel_price price_blue">
+                <div className="box__conteiner_price price_blue">
                   $149
                 </div>
                 <hr />
-                <div className="block3__box_content_box_panel_text">
+                <div className="box__conteiner_text">
                   Push Notifications
                   Data Transfer
                   SQL Database
@@ -143,16 +145,16 @@ export default class Main extends React.Component {
                   Purchase now
                 </button>
               </div>
-              <div className="block3__box_content_box_panel_block">
+              <div className="box__conteiner_block">
                 <p>
                   Unlimited
                 </p>
                 <img src={unlimited} alt="Unlimited" />
-                <div className="block3__box_content_box_panel_price">
+                <div className="box__conteiner_price">
                   $39
                 </div>
                 <hr />
-                <div className="block3__box_content_box_panel_text">
+                <div className="box__conteiner_text">
                   Push Notifications
                   Data Transfer
                   SQL Database
@@ -196,3 +198,9 @@ export default class Main extends React.Component {
     )
   }
 }
+
+Main.propTypes = {
+  history: PropTypes.object.isRequired,
+};
+
+export default withRouter(Main);
