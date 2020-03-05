@@ -6,16 +6,8 @@ const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default class ChartClicks extends React.Component {	
 
-  render() {
-    if (!this.props.statistics) {
-      return <ProgressCentered />;
-    }
-    const userStatistic = this.props.statistics.map((userStat) => {
-      const result = {x:  new Date(userStat.date),  y:  userStat.clicks}
-
-      return result;
-    });
-		const options = {
+  get options() {
+    return {
       animationEnabled:  true,
       axisX: {
         //valueFormatString:  "MMM"
@@ -29,13 +21,29 @@ export default class ChartClicks extends React.Component {
       data: [{
         yValueFormatString: "#,###",
         xValueFormatString:  "MMMM",
-        type:  "spline",
-        dataPoints: userStatistic,
+        type: "spline",
+        dataPoints: this.userStatistic,
       }]
-		}
+    };
+  };
+
+  get userStatistic() {
+    return(
+      this.props.statistics.map((userStat) => {
+        const result = {x: new Date(userStat.date), y: userStat.clicks}
+        return result;
+      })
+    );
+  };
+
+  render() {
+    if (!this.props.statistics) {
+      return <ProgressCentered />;
+    };
+
 		return (
 		<div>
-			<CanvasJSChart options = {options} />
+			<CanvasJSChart options={this.options} />
 		</div>
 		);
 	}

@@ -84,14 +84,12 @@ app.get('/api/users/statistic', (req, res) => {
 
   const userStatisticDateInMs = userStatistic.map((user) => {
     const dateMilisecond = new Date(user.date).getTime();
-    return (
-      {
-        user_id: user.user_id,
-        date: dateMilisecond,
-        clicks: user.clicks,
-        page_views: user.page_views,
-      }
-    );
+    return {
+      user_id: user.user_id,
+      date: dateMilisecond,
+      clicks: user.clicks,
+      page_views: user.page_views,
+    }
   });
 
   const compareDatesInMs = (dateA, dateB) => dateA.date - dateB.date;
