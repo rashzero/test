@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import mobail from './static/img/mobile.png';
 import artImg from './static/img/Group 13.png';
@@ -11,40 +11,56 @@ import standart from './static/img/undraw_file_sync_ot38 1.png';
 import unlimited from './static/img/undraw_quiz_nlyh 1.png';
 
 class Main extends React.Component {
-
   hendlerClick = () => {
     this.props.history.push('/statistic/0');
   }
 
-  render () {
+  render() {
     return (
       <div>
         <div className="header">
           <div className="header__content">
             <div className="header__content_title">
-              <span>Brainstorming</span> for<br/> desired perfect Usability
+              <span>Brainstorming</span>
+              {' '}
+              for
+              <br />
+              {' '}
+              desired perfect Usability
             </div>
             <div className="header-content_citat">Our design projects are fresh and simple and will benefit your business greatly. Learn more about our work!</div>
             <div>
-              <button className='header__content_button' onClick={this.hendlerClick}>
+              <button
+                className="header__content_button"
+                onClick={this.hendlerClick}
+                type="button"
+              >
                 View Stats
               </button>
             </div>
           </div>
-          <div><img src={mobail} alt="mobail" className="header__iphone"/></div>
+          <div><img src={mobail} alt="mobail" className="header__iphone" /></div>
         </div>
         <div className="blok1">
           <p className="blok1_area1">
-            Why <b>small business owners</b><br/>
-            <b>love</b> AppCo?
+            Why
+            {' '}
+            <b>small business owners</b>
+            <br />
+            <b>love</b>
+            {' '}
+AppCo?
           </p>
           <p className="blok1_area2">
-            Our design projects are fresh and simple and will benefit your business<br/> greatly. Learn more about our work!
+            Our design projects are fresh and simple and will benefit your business
+            <br />
+            {' '}
+greatly. Learn more about our work!
           </p>
         </div>
         <div className="container">
           <div className="box__container">
-            <img src={artImg} alt="art" className="box__container_img"/>
+            <img src={artImg} alt="art" className="box__container_img" />
             <div className="box__container_card-name">
               Clean Design
             </div>
@@ -53,7 +69,7 @@ class Main extends React.Component {
             </div>
           </div>
           <div className="box__container">
-            <img src={artSec} alt="art" className="box__container_img"/>
+            <img src={artSec} alt="art" className="box__container_img" />
             <div className="box__container_card-name">
               Secure Data
             </div>
@@ -62,7 +78,7 @@ class Main extends React.Component {
             </div>
           </div>
           <div className="box__container">
-            <img src={artPC} alt="art" className="box__container_img"/>
+            <img src={artPC} alt="art" className="box__container_img" />
             <div className="box__container_card-name">
               Retina Ready
             </div>
@@ -75,24 +91,32 @@ class Main extends React.Component {
           <div className="block2">
             <div>
               <p className="block2_text1">
-                Start Managing your apps <br/> business, more faster
+                Start Managing your apps
+                {' '}
+                <br />
+                {' '}
+business, more faster
               </p>
               <p className="block2_text2">
-                Objectively deliver professional value with diverse web-readiness. Collaboratively transition wireless customer service without goal-oriented catalysts for change. Collaboratively.
+                Objectively deliver professional value with diverse web-readiness.
+                Collaboratively transition wireless customer
+                service without goal-oriented catalysts for change.
+                Collaboratively.
               </p>
-              <button className="block2_button">
+              <button className="block2_button" type="button">
                 Learn more
               </button>
             </div>
             <div>
               <img src={macbook} alt="macBook" className="block2_macBook" />
             </div>
-          </div>  
+          </div>
         </div>
         <div className="block3">
           <div className="block3__content">
             <p className="block3__content_text1">
-              <b>Afforadble Pricing and Packages</b><br />
+              <b>Afforadble Pricing and Packages</b>
+              <br />
               choose your best one
             </p>
             <p className="block3__content_text2">
@@ -119,7 +143,7 @@ class Main extends React.Component {
                   2 months technical support
                   2+ profitable keyword
                 </div>
-                <button>
+                <button type="button">
                   Purchase now
                 </button>
               </div>
@@ -141,7 +165,7 @@ class Main extends React.Component {
                   2 months technical support
                   2+ profitable keyword
                 </div>
-                <button>
+                <button type="button">
                   Purchase now
                 </button>
               </div>
@@ -163,21 +187,23 @@ class Main extends React.Component {
                   2 months technical support
                   2+ profitable keyword
                 </div>
-                <button>
+                <button type="button">
                   Purchase now
                 </button>
-              </div> 
-            </div> 
+              </div>
+            </div>
           </div>
-        </div> 
+        </div>
         <div className="block4">
           <div className="block4__content">
             <p className="block4__content_formContact">
-              If you need custom services or Need more? <b>Contact us</b>
+              If you need custom services or Need more?
+              {' '}
+              <b>Contact us</b>
             </p>
             <form>
-              <input placeholder="Enter your email"/>
-              <button>
+              <input placeholder="Enter your email" />
+              <button type="button">
                 Subscribe
               </button>
             </form>
@@ -190,12 +216,12 @@ class Main extends React.Component {
               All rights reserved by ThemeTags
             </p>
             <p>
-              Copyrights © 2019. 
+              Copyrights © 2019.
             </p>
-          </div>   
-        </div>  
+          </div>
+        </div>
       </div>
-    )
+    );
   }
 }
 

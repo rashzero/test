@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
@@ -13,7 +13,7 @@ import './css/User_statistic.scss';
 import './css/Footer.scss';
 
 class Statistic extends React.Component {
-  quantityUsersOnPage = 50; 
+  quantityUsersOnPage = 50;
 
   state = {
     users: [],
@@ -36,17 +36,15 @@ class Statistic extends React.Component {
     const { page } = this.props.match.params;
     if (+page) {
       return +page;
-    } else {
-      return 0;
     }
+    return 0;
   }
 
   getUsersRequest = async (page) => {
-      const url = `http://localhost:8080/api/users?page=${page}&quantity=${this.quantityUsersOnPage}`;
-      const responseNumberOfPage = await fetch(url);
-      const responseJsonNumberOfPage = await responseNumberOfPage.json();
-      console.log(responseJsonNumberOfPage);
-      return responseJsonNumberOfPage;
+    const url = `http://localhost:8080/api/users?page=${page}&quantity=${this.quantityUsersOnPage}`;
+    const responseNumberOfPage = await fetch(url);
+    const responseJsonNumberOfPage = await responseNumberOfPage.json();
+    return responseJsonNumberOfPage;
   }
 
   getUsers = async (userId) => {
@@ -56,26 +54,30 @@ class Statistic extends React.Component {
       isLoading: true,
     });
 
-    const usersRequest = await this.getUsersRequest(userId);
-
-    const { chunkUsers, error, numbOfPage } = usersRequest;
+    const { users, error, page } = await this.getUsersRequest(userId);
 
     if (error) {
       alert(error);
-    } else if (userId in cacheCloned) {
+      this.setState({
+        isLoading: false,
+      });
+      return;
+    }
+
+    if (userId in cacheCloned) {
       this.setState({
         users: cacheCloned[userId],
         isLoading: false,
-      })
+      });
     } else {
-      cacheCloned[userId] = chunkUsers;
+      cacheCloned[userId] = users;
       this.setState({
-        users: chunkUsers,
+        users,
         cache: cacheCloned,
-        paginationPagesQuantity: numbOfPage,
+        paginationPagesQuantity: page,
         isLoading: false,
-      })
-    } 
+      });
+    }
 
     if (userId !== this.currentPage) {
       this.props.history.push(`/statistic/${userId}`);
@@ -91,9 +93,9 @@ class Statistic extends React.Component {
   }
 
   handlerLinkToUser = (id) => {
-    this.props.history.push(`/user/${id}`)
+    this.props.history.push(`/user/${id}`);
   }
- 
+
   render() {
     const { users } = this.state;
 
@@ -105,15 +107,17 @@ class Statistic extends React.Component {
       <div>
         <div className={this.props.classes.root}>
           <Breadcrumbs separator="›" aria-label="breadcrumb">
-            <Link color="inherit" href="/" >
+            <Link color="inherit" href="/">
               Main Page
             </Link>
-            <Typography color="primary">User satistics</Typography>
+            <Typography color="primary">
+              User satistics
+            </Typography>
           </Breadcrumbs>
         </div>
         <div>
-          <Typography  className="content__user-name"> 
-            Users statistics 
+          <Typography className="content__user-name">
+            Users statistics
           </Typography>
         </div>
         <div className="content__table">
@@ -127,25 +131,27 @@ class Statistic extends React.Component {
                 <td>Gender</td>
                 <td>IP adress</td>
                 <td>Total clicks</td>
-                <td className="content__table_even">Total page views</td>
+                <td className="content__table_even">
+                  Total page views
+                </td>
               </tr>
             </thead>
             <tbody>
               {users.map((user) => (
-                <tr 
+                <tr
                   style={{ backgroundColor: (user.id % 2) ? '#FBFBFB' : '#F1F1F1' }}
                   onClick={() => this.handlerLinkToUser(user.id)}
                   key={user.id}
                   className="content__table_rows"
                 >
-                  <td >{user.id}</td>
+                  <td>{user.id}</td>
                   <td>{user.first_name}</td>
                   <td>{user.last_name}</td>
                   <td>{user.email}</td>
                   <td>{user.gender}</td>
                   <td>{user.ip_address}</td>
                   <td>{user.click}</td>
-                  <td >{user.view}</td>
+                  <td>{user.view}</td>
                 </tr>
               ))}
             </tbody>
@@ -158,8 +164,8 @@ class Statistic extends React.Component {
               aria-label="large outlined secondary button group"
               className="content__pagination_elem"
             >
-              <Button  
-                disabled={(this.currentPage <= 0)} 
+              <Button
+                disabled={(this.currentPage <= 0)}
                 onClick={this.backPage}
               >
                 Назад
@@ -175,9 +181,9 @@ class Statistic extends React.Component {
                   >
                     {index + 1}
                   </Button>
-              ))}
-              <Button 
-                disabled={(this.currentPage === this.state.paginationPagesQuantity - 1)} 
+                ))}
+              <Button
+                disabled={(this.currentPage === this.state.paginationPagesQuantity - 1)}
                 onClick={this.nextPage}
               >
                 Вперед
@@ -193,11 +199,11 @@ class Statistic extends React.Component {
             All rights reserved by ThemeTags
           </span>
           <span>
-            Copyrights © 2019. 
+            Copyrights © 2019.
           </span>
         </div>
       </div>
-    )
+    );
   }
 }
 
