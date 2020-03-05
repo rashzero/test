@@ -10,7 +10,6 @@ export default class ChartViews extends React.Component {
     return {
       animationEnabled:  true,
       axisX: {
-        //valueFormatString:  "MMM"
         lineColor: "#F1F1F1",
       },
       axisY: {

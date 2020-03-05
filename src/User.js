@@ -61,8 +61,7 @@ class User extends React.Component {
       return;
     }
 
-    const userWithStatRequest = await this.getUserWithStatRequest();
-    const { user } = userWithStatRequest;
+    const { user } = await this.getUserWithStatRequest();
     this.setState({
       user,
       isLoading: false,

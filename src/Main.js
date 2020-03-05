@@ -21,14 +21,13 @@ class Main extends React.Component {
         <div className="header">
           <div className="header__content">
             <div className="header__content_title">
-              <span>Brainstorming</span>
-              {' '}
-              for
-              <br />
-              {' '}
+              <span>Brainstorming</span> for<br />
               desired perfect Usability
             </div>
-            <div className="header-content_citat">Our design projects are fresh and simple and will benefit your business greatly. Learn more about our work!</div>
+            <div className="header-content_citat">
+              Our design projects are fresh and simple and will benefit your business greatly.
+              Learn more about our work!
+            </div>
             <div>
               <button
                 className="header__content_button"
@@ -43,19 +42,12 @@ class Main extends React.Component {
         </div>
         <div className="blok1">
           <p className="blok1_area1">
-            Why
-            {' '}
-            <b>small business owners</b>
-            <br />
-            <b>love</b>
-            {' '}
-AppCo?
+            Why <b>small business owners</b><br />
+            <b>love </b>AppCo?
           </p>
           <p className="blok1_area2">
-            Our design projects are fresh and simple and will benefit your business
-            <br />
-            {' '}
-greatly. Learn more about our work!
+            Our design projects are fresh and simple and will benefit your business<br />
+            greatly. Learn more about our work!
           </p>
         </div>
         <div className="container">
@@ -91,11 +83,8 @@ greatly. Learn more about our work!
           <div className="block2">
             <div>
               <p className="block2_text1">
-                Start Managing your apps
-                {' '}
-                <br />
-                {' '}
-business, more faster
+                Start Managing your apps<br />
+                business, more faster
               </p>
               <p className="block2_text2">
                 Objectively deliver professional value with diverse web-readiness.
@@ -197,9 +186,7 @@ business, more faster
         <div className="block4">
           <div className="block4__content">
             <p className="block4__content_formContact">
-              If you need custom services or Need more?
-              {' '}
-              <b>Contact us</b>
+              If you need custom services or Need more? <b>Contact us</b>
             </p>
             <form>
               <input placeholder="Enter your email" />
