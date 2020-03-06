@@ -41,9 +41,9 @@ export default class ChartViews extends React.Component {
     };
 		
 		return (
-		<div>
-			<CanvasJSChart options={this.options} />
-		</div>
+      <div>
+        <CanvasJSChart options={this.options} />
+      </div>
 		);
 	}
 }

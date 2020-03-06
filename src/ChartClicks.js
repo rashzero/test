@@ -42,9 +42,9 @@ export default class ChartClicks extends React.Component {
     };
 
 		return (
-		<div>
-			<CanvasJSChart options={this.options} />
-		</div>
+      <div>
+        <CanvasJSChart options={this.options} />
+      </div>
 		);
 	}
 }
