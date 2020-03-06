@@ -84,6 +84,10 @@ class Statistic extends React.Component {
     }
   }
 
+  hendlerPageClick = (userId) => {
+    this.props.history.push(`/statistic/${userId}`);
+  }
+
   nextPage = () => {
     this.getUsers(this.currentPage + 1);
   }
@@ -176,7 +180,7 @@ class Statistic extends React.Component {
                   <Button
                     style={{ backgroundColor: (this.currentPage === index) ? '#3A80BA' : '' }}
                     value={index}
-                    onClick={() => this.getUsers(index)}
+                    onClick={() => this.hendlerPageClick(index)}
                     key={index}
                   >
                     {index + 1}

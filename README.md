@@ -1,2 +1,2 @@
-1) start server - npm run devStart
+1) start server - npm run server
 2) start client - npm start
